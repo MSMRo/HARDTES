@@ -1,0 +1,149 @@
+[
+  {
+    "id": "tab_lab07",
+    "type": "tab",
+    "label": "Lab 07 - Storage & File Logging",
+    "disabled": false,
+    "info": "Laboratorio 07: Almacenamiento local de telemetría médica en archivos CSV rotativos."
+  },
+  {
+    "id": "inj_store_sample",
+    "type": "inject",
+    "z": "tab_lab07",
+    "name": "Registrar Muestra Paciente",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"paciente_id\":\"PAC-101\",\"bpm\":76,\"spo2\":98,\"temp\":36.6}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "fn_format_csv_row"
+      ]
+    ]
+  },
+  {
+    "id": "fn_format_csv_row",
+    "type": "function",
+    "z": "tab_lab07",
+    "name": "Formatear Fila CSV",
+    "func": "let d = msg.payload;\nlet now = new Date().toISOString();\nlet estado = (d.spo2 < 90 || d.bpm > 100) ? \"CRITICO\" : \"ESTABLE\";\n\n// Formato: ISO_Timestamp,PacienteID,BPM,SpO2,Temperatura,Estado\nmsg.payload = `${now},${d.paciente_id},${d.bpm},${d.spo2},${d.temp},${estado}`;\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 470,
+    "y": 120,
+    "wires": [
+      [
+        "file_append_log",
+        "debug_log_saved"
+      ]
+    ]
+  },
+  {
+    "id": "file_append_log",
+    "type": "file",
+    "z": "tab_lab07",
+    "name": "Escribir pacientes_vitales.csv",
+    "filename": "pacientes_vitales.csv",
+    "appendNewline": true,
+    "createDir": true,
+    "overwriteFile": "false",
+    "encoding": "utf8",
+    "x": 760,
+    "y": 120,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "debug_log_saved",
+    "type": "debug",
+    "z": "tab_lab07",
+    "name": "Línea Almacenada",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "inj_read_file",
+    "type": "inject",
+    "z": "tab_lab07",
+    "name": "Consultar Historial Guardado",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 190,
+    "y": 280,
+    "wires": [
+      [
+        "file_in_history"
+      ]
+    ]
+  },
+  {
+    "id": "file_in_history",
+    "type": "file in",
+    "z": "tab_lab07",
+    "name": "Leer pacientes_vitales.csv",
+    "filename": "pacientes_vitales.csv",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "utf8",
+    "allProps": false,
+    "x": 480,
+    "y": 280,
+    "wires": [
+      [
+        "debug_full_history"
+      ]
+    ]
+  },
+  {
+    "id": "debug_full_history",
+    "type": "debug",
+    "z": "tab_lab07",
+    "name": "Historial Completo en Disco",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 760,
+    "y": 280,
+    "wires": []
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "tab_esp32_p03",
+    "type": "tab",
+    "label": "ESP32 P03 - SoftAP Provisioning",
+    "disabled": false,
+    "info": "Flujo de Node-RED para simular el envío de credenciales de red durante el modo SoftAP del ESP32."
+  },
+  {
+    "id": "inj_ap_connect",
+    "type": "inject",
+    "z": "tab_esp32_p03",
+    "name": "Enviar Credenciales Hospitalarias",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "upch/provisioning/credentials",
+    "payload": "{\"target_ssid\":\"UPCH-Hospital-Secure\",\"target_pass\":\"ClaveClinica2026\",\"auth_token\":\"MED-AUTH-9981\"}",
+    "payloadType": "json",
+    "x": 220,
+    "y": 140,
+    "wires": [
+      [
+        "fn_ap_provision_log"
+      ]
+    ]
+  },
+  {
+    "id": "fn_ap_provision_log",
+    "type": "function",
+    "z": "tab_esp32_p03",
+    "name": "Generar Paquete Aprovisionamiento",
+    "func": "let creds = msg.payload;\nmsg.payload = {\n    accion: \"APROVISIONAR_DISPOSITIVO\",\n    red_objetivo: creds.target_ssid,\n    token_seguridad: creds.auth_token,\n    hora_solicitud: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 550,
+    "y": 140,
+    "wires": [
+      [
+        "dbg_ap_provision"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_ap_provision",
+    "type": "debug",
+    "z": "tab_esp32_p03",
+    "name": "Log Aprovisionamiento",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 840,
+    "y": 140,
+    "wires": []
+  }
+]

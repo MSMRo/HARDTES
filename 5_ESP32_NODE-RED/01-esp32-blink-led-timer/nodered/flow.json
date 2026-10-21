@@ -1,0 +1,94 @@
+[
+  {
+    "id": "tab_esp32_p01",
+    "type": "tab",
+    "label": "ESP32 P01 - Heartbeat Watchdog",
+    "disabled": false,
+    "info": "Flujo de simulación y vigilancia de Heartbeat para el Proyecto 01 de ESP32."
+  },
+  {
+    "id": "inj_heartbeat",
+    "type": "inject",
+    "z": "tab_esp32_p01",
+    "name": "Simular Pulso ESP32 (1s)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "1",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "esp32/heartbeat",
+    "payload": "{\"uptime_s\":10,\"status\":\"ALIVE\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 140,
+    "wires": [
+      [
+        "trig_watchdog",
+        "debug_heartbeat_ok"
+      ]
+    ]
+  },
+  {
+    "id": "trig_watchdog",
+    "type": "trigger",
+    "z": "tab_esp32_p01",
+    "name": "Watchdog (Alerta tras 3s de inactividad)",
+    "op1": "DISPOSITIVO_CONECTADO",
+    "op2": "ALERTA: Sensor Biomédico Desconectado (Pérdida de Heartbeat)",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "3",
+    "extend": true,
+    "overrideDelay": false,
+    "units": "s",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 550,
+    "y": 140,
+    "wires": [
+      [
+        "debug_watchdog_alert"
+      ]
+    ]
+  },
+  {
+    "id": "debug_heartbeat_ok",
+    "type": "debug",
+    "z": "tab_esp32_p01",
+    "name": "Pulso Recibido",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 460,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "debug_watchdog_alert",
+    "type": "debug",
+    "z": "tab_esp32_p01",
+    "name": "Estado del Watchdog",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 860,
+    "y": 140,
+    "wires": []
+  }
+]

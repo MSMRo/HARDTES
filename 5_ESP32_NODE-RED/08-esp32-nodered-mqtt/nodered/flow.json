@@ -1,0 +1,207 @@
+[
+  {
+    "id": "tab_esp32_p08",
+    "type": "tab",
+    "label": "ESP32 P08 - MQTT IoMT Gateway",
+    "disabled": false,
+    "info": "Flujo de Node-RED para comunicación bidireccional por MQTT con el ESP32 (signos vitales y telecontrol)."
+  },
+  {
+    "id": "mqtt_broker_p08",
+    "type": "mqtt-broker",
+    "name": "EMQX Broker Publico",
+    "broker": "broker.emqx.io",
+    "port": "1883",
+    "clientid": "upch_nodered_gateway_p08",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "mqtt_in_esp32_vitals",
+    "type": "mqtt in",
+    "z": "tab_esp32_p08",
+    "name": "Signos Vitales Paciente",
+    "topic": "upch/telesalud/paciente_01/vitales",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "mqtt_broker_p08",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 200,
+    "y": 140,
+    "wires": [
+      [
+        "fn_check_emergency"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_in_esp32_status",
+    "type": "mqtt in",
+    "z": "tab_esp32_p08",
+    "name": "Presencia / LWT Dispositivo",
+    "topic": "upch/telesalud/paciente_01/estado",
+    "qos": "1",
+    "datatype": "utf8",
+    "broker": "mqtt_broker_p08",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 210,
+    "y": 240,
+    "wires": [
+      [
+        "debug_status_lwt"
+      ]
+    ]
+  },
+  {
+    "id": "fn_check_emergency",
+    "type": "function",
+    "z": "tab_esp32_p08",
+    "name": "Vigilancia de Alertas Clínicas",
+    "func": "let d = msg.payload;\nlet alertaCritica = false;\nlet motivo = \"\";\n\nif (d.spo2 < 90) {\n    alertaCritica = true;\n    motivo = `Hipoxemia Severa (${d.spo2}%)`;\n} else if (d.bpm > 105) {\n    alertaCritica = true;\n    motivo = `Taquicardia Aguda (${d.bpm} lpm)`;\n}\n\n// Mensaje de telemetría procesado\nlet msgTelemetry = {\n    payload: {\n        paciente: d.paciente_id,\n        bpm: d.bpm,\n        spo2: d.spo2,\n        temp: d.temp_c,\n        alerta: alertaCritica ? motivo : \"NORMAL\",\n        uptime: d.uptime_s\n    }\n};\n\n// Si hay emergencia, disparar orden automática al ESP32 para activar alarma física\nlet msgComando = null;\nif (alertaCritica) {\n    msgComando = {\n        topic: \"upch/telesalud/paciente_01/comandos\",\n        payload: JSON.stringify({ accion: \"ACTIVAR_ALARMA\", motivo: motivo })\n    };\n}\n\nreturn [msgTelemetry, msgComando];",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 140,
+    "wires": [
+      [
+        "debug_vitals_monitored"
+      ],
+      [
+        "mqtt_out_commands"
+      ]
+    ]
+  },
+  {
+    "id": "debug_vitals_monitored",
+    "type": "debug",
+    "z": "tab_esp32_p08",
+    "name": "Monitor Central Telesalud",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 830,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "mqtt_out_commands",
+    "type": "mqtt out",
+    "z": "tab_esp32_p08",
+    "name": "Enviar Comandos al ESP32",
+    "topic": "upch/telesalud/paciente_01/comandos",
+    "qos": "1",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "mqtt_broker_p08",
+    "x": 840,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "debug_status_lwt",
+    "type": "debug",
+    "z": "tab_esp32_p08",
+    "name": "Estado de Presencia (LWT)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 530,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "inj_manual_on",
+    "type": "inject",
+    "z": "tab_esp32_p08",
+    "name": "Encender Alarma en ESP32",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "upch/telesalud/paciente_01/comandos",
+    "payload": "{\"accion\":\"ACTIVAR_ALARMA\"}",
+    "payloadType": "str",
+    "x": 210,
+    "y": 320,
+    "wires": [
+      [
+        "mqtt_out_commands"
+      ]
+    ]
+  },
+  {
+    "id": "inj_manual_off",
+    "type": "inject",
+    "z": "tab_esp32_p08",
+    "name": "Silenciar Alarma en ESP32",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "upch/telesalud/paciente_01/comandos",
+    "payload": "{\"accion\":\"SILENCIAR_ALARMA\"}",
+    "payloadType": "str",
+    "x": 210,
+    "y": 380,
+    "wires": [
+      [
+        "mqtt_out_commands"
+      ]
+    ]
+  }
+]

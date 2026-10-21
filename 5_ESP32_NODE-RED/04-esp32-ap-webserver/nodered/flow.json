@@ -1,0 +1,75 @@
+[
+  {
+    "id": "tab_esp32_p04",
+    "type": "tab",
+    "label": "ESP32 P04 - Client Polling AP",
+    "disabled": false,
+    "info": "Flujo de Node-RED para consultar periódicamente el endpoint /api/vitales del servidor web embebido en el ESP32."
+  },
+  {
+    "id": "inj_poll_esp32",
+    "type": "inject",
+    "z": "tab_esp32_p04",
+    "name": "Consultar ESP32 AP cada 5s",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 200,
+    "y": 140,
+    "wires": [
+      [
+        "http_req_esp32"
+      ]
+    ]
+  },
+  {
+    "id": "http_req_esp32",
+    "type": "http request",
+    "z": "tab_esp32_p04",
+    "name": "GET http://192.168.4.1/api/vitales",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://192.168.4.1/api/vitales",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 510,
+    "y": 140,
+    "wires": [
+      [
+        "debug_esp32_web_data"
+      ]
+    ]
+  },
+  {
+    "id": "debug_esp32_web_data",
+    "type": "debug",
+    "z": "tab_esp32_p04",
+    "name": "Telemetría desde Servidor Embebido",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 840,
+    "y": 140,
+    "wires": []
+  }
+]

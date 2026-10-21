@@ -1,0 +1,121 @@
+[
+  {
+    "id": "tab_lab02",
+    "type": "tab",
+    "label": "Lab 02 - Functions & Context",
+    "disabled": false,
+    "info": "Laboratorio 02: Procesamiento JavaScript y uso de variables de contexto en Node-RED."
+  },
+  {
+    "id": "inject_bpm_normal",
+    "type": "inject",
+    "z": "tab_lab02",
+    "name": "BPM Normal (72 bpm)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"patient_id\":\"PAC-001\",\"bpm\":72}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "fn_moving_average"
+      ]
+    ]
+  },
+  {
+    "id": "inject_bpm_taqui",
+    "type": "inject",
+    "z": "tab_lab02",
+    "name": "BPM Alto (115 bpm)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"patient_id\":\"PAC-001\",\"bpm\":115}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 180,
+    "wires": [
+      [
+        "fn_moving_average"
+      ]
+    ]
+  },
+  {
+    "id": "inject_bpm_bradi",
+    "type": "inject",
+    "z": "tab_lab02",
+    "name": "BPM Bajo (52 bpm)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"patient_id\":\"PAC-001\",\"bpm\":52}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 240,
+    "wires": [
+      [
+        "fn_moving_average"
+      ]
+    ]
+  },
+  {
+    "id": "fn_moving_average",
+    "type": "function",
+    "z": "tab_lab02",
+    "name": "Filtro Media Móvil & Clasificación",
+    "func": "// 1. Obtener la muestra recibida\nlet inputBpm = Number(msg.payload.bpm);\n\n// 2. Gestionar historial en contexto de flujo\nlet history = flow.get(\"bpm_history\") || [];\nhistory.push(inputBpm);\n\nif (history.length > 5) {\n    history.shift(); // Ventana deslizante de 5 muestras\n}\nflow.set(\"bpm_history\", history);\n\n// 3. Calcular promedio\nlet sum = history.reduce((acc, val) => acc + val, 0);\nlet avgBpm = Math.round(sum / history.length);\n\n// 4. Clasificación clínica\nlet estado = \"NORMAL\";\nif (avgBpm > 100) {\n    estado = \"TAQUICARDIA\";\n} else if (avgBpm < 60) {\n    estado = \"BRADICARDIA\";\n}\n\n// 5. Construir objeto de salida enriquecido\nmsg.payload = {\n    patient_id: msg.payload.patient_id || \"PACIENTE-01\",\n    bpm_instantaneo: inputBpm,\n    bpm_promedio_5_muestras: avgBpm,\n    muestras_en_buffer: history.length,\n    diagnostico_preliminar: estado,\n    timestamp: new Date().toISOString()\n};\n\nnode.status({\n    fill: (estado === \"NORMAL\" ? \"green\" : \"red\"),\n    shape: \"dot\",\n    text: `BPM Prom: ${avgBpm} (${estado})`\n});\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 180,
+    "wires": [
+      [
+        "debug_resultado_vitales"
+      ]
+    ]
+  },
+  {
+    "id": "debug_resultado_vitales",
+    "type": "debug",
+    "z": "tab_lab02",
+    "name": "Signos Vitales Procesados",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 760,
+    "y": 180,
+    "wires": []
+  }
+]

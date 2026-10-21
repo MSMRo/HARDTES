@@ -1,0 +1,71 @@
+[
+  {
+    "id": "tab_esp32_p02",
+    "type": "tab",
+    "label": "ESP32 P02 - RSSI WiFi Analyzer",
+    "disabled": false,
+    "info": "Flujo de Node-RED para procesar y evaluar reportes de calidad de señal Wi-Fi (RSSI) del ESP32."
+  },
+  {
+    "id": "inj_rssi_sample",
+    "type": "inject",
+    "z": "tab_esp32_p02",
+    "name": "Simular Trama RSSI ESP32",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"device\":\"ESP32-Scanner\",\"ssid\":\"UPCH-Hospital-WiFi\",\"channel\":6,\"rssi_dbm\":-63}",
+    "payloadType": "json",
+    "x": 200,
+    "y": 140,
+    "wires": [
+      [
+        "fn_eval_rssi"
+      ]
+    ]
+  },
+  {
+    "id": "fn_eval_rssi",
+    "type": "function",
+    "z": "tab_esp32_p02",
+    "name": "Evaluar Idoneidad Clínica",
+    "func": "let d = msg.payload;\nlet rssi = Number(d.rssi_dbm);\nlet calificacion = \"\";\nlet recomendadoPara = \"\";\nlet alertLevel = \"info\";\n\nif (rssi >= -60) {\n    calificacion = \"EXCELENTE\";\n    recomendadoPara = \"Apto para streaming continuo de ECG / EEG de alta velocidad\";\n    alertLevel = \"success\";\n} else if (rssi >= -75) {\n    calificacion = \"BUENA\";\n    recomendadoPara = \"Apto para telemetría periódica de SpO2, temperatura y presión arterial\";\n    alertLevel = \"info\";\n} else if (rssi >= -85) {\n    calificacion = \"DEFICIENTE\";\n    recomendadoPara = \"Riesgo de retraso en entrega de alarmas; reubicar antena\";\n    alertLevel = \"warn\";\n} else {\n    calificacion = \"CRÍTICA\";\n    recomendadoPara = \"INAPTO para monitoreo de pacientes críticos; conexión inestable\";\n    alertLevel = \"danger\";\n}\n\nmsg.payload = {\n    red: d.ssid,\n    canal: d.channel,\n    potencia_dbm: rssi,\n    calidad_enlace: calificacion,\n    evaluacion_telesalud: recomendadoPara,\n    nivel_alerta: alertLevel,\n    auditado_en: new Date().toISOString()\n};\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 140,
+    "wires": [
+      [
+        "dbg_rssi_report"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_rssi_report",
+    "type": "debug",
+    "z": "tab_esp32_p02",
+    "name": "Reporte Auditoría RF",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 800,
+    "y": 140,
+    "wires": []
+  }
+]

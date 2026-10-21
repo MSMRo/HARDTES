@@ -1,0 +1,135 @@
+[
+  {
+    "id": "tab_esp32_p06",
+    "type": "tab",
+    "label": "ESP32 P06 - Serial Telemetry",
+    "disabled": false,
+    "info": "Flujo de Node-RED para comunicación bidireccional serial UART con ESP32."
+  },
+  {
+    "id": "serial_config_node",
+    "type": "serial-port",
+    "serialport": "COM3",
+    "serialbaud": "115200",
+    "databits": "8",
+    "parity": "none",
+    "stopbits": "1",
+    "waitfor": "",
+    "dtr": "none",
+    "rts": "none",
+    "cts": "none",
+    "dsr": "none",
+    "newline": "\\n",
+    "bin": "false",
+    "out": "char",
+    "addchar": "",
+    "responsetimeout": "10000"
+  },
+  {
+    "id": "serial_in_esp32",
+    "type": "serial in",
+    "z": "tab_esp32_p06",
+    "name": "ESP32 UART IN (115200)",
+    "serial": "serial_config_node",
+    "x": 190,
+    "y": 140,
+    "wires": [
+      [
+        "json_parse_serial"
+      ]
+    ]
+  },
+  {
+    "id": "json_parse_serial",
+    "type": "json",
+    "z": "tab_esp32_p06",
+    "name": "Parsear Telemetría",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 450,
+    "y": 140,
+    "wires": [
+      [
+        "debug_serial_vitals"
+      ]
+    ]
+  },
+  {
+    "id": "debug_serial_vitals",
+    "type": "debug",
+    "z": "tab_esp32_p06",
+    "name": "Telemetría Serial Recibida",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 750,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "inj_cmd_alarma_on",
+    "type": "inject",
+    "z": "tab_esp32_p06",
+    "name": "Activar Alarma ESP32",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"comando\":\"ALARMA_ON\"}\n",
+    "payloadType": "str",
+    "x": 190,
+    "y": 240,
+    "wires": [
+      [
+        "serial_out_esp32"
+      ]
+    ]
+  },
+  {
+    "id": "inj_cmd_alarma_off",
+    "type": "inject",
+    "z": "tab_esp32_p06",
+    "name": "Silenciar Alarma ESP32",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"comando\":\"ALARMA_OFF\"}\n",
+    "payloadType": "str",
+    "x": 190,
+    "y": 300,
+    "wires": [
+      [
+        "serial_out_esp32"
+      ]
+    ]
+  },
+  {
+    "id": "serial_out_esp32",
+    "type": "serial out",
+    "z": "tab_esp32_p06",
+    "name": "ESP32 UART OUT",
+    "serial": "serial_config_node",
+    "x": 510,
+    "y": 270,
+    "wires": []
+  }
+]

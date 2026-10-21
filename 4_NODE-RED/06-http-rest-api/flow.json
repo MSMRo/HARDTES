@@ -1,0 +1,127 @@
+[
+  {
+    "id": "tab_lab06",
+    "type": "tab",
+    "label": "Lab 06 - REST API Server & Client",
+    "disabled": false,
+    "info": "Laboratorio 06: Servidor y Cliente API REST HTTP para telemetría médica en Node-RED."
+  },
+  {
+    "id": "http_in_post_vitals",
+    "type": "http in",
+    "z": "tab_lab06",
+    "name": "POST /api/paciente/vitales",
+    "url": "/api/paciente/vitales",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 200,
+    "y": 120,
+    "wires": [
+      [
+        "fn_validate_store"
+      ]
+    ]
+  },
+  {
+    "id": "fn_validate_store",
+    "type": "function",
+    "z": "tab_lab06",
+    "name": "Validar y Persistir en Contexto",
+    "func": "let data = msg.payload;\n\n// Validación básica de campos biomédicos\nif (!data || !data.paciente_id || data.bpm === undefined || data.spo2 === undefined) {\n    msg.statusCode = 400;\n    msg.payload = {\n        error: \"Bad Request\",\n        message: \"Faltan campos obligatorios: paciente_id, bpm, spo2\"\n    };\n    return msg;\n}\n\n// Estructurar registro y guardar en contexto de flujo\ndata.servidor_timestamp = new Date().toISOString();\nflow.set(\"ultimo_paciente_data\", data);\n\n// Respuesta al cliente HTTP (ESP32 o frontend)\nmsg.statusCode = 201;\nmsg.payload = {\n    status: \"success\",\n    message: \"Constantes vitales registradas satisfactoriamente\",\n    paciente: data.paciente_id,\n    timestamp: data.servidor_timestamp\n};\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 120,
+    "wires": [
+      [
+        "http_resp_post",
+        "debug_log_post"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_post",
+    "type": "http response",
+    "z": "tab_lab06",
+    "name": "Respuesta 201 Created",
+    "statusCode": "",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 810,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "debug_log_post",
+    "type": "debug",
+    "z": "tab_lab06",
+    "name": "Log Recepción API",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 790,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "http_in_get_vitals",
+    "type": "http in",
+    "z": "tab_lab06",
+    "name": "GET /api/paciente/vitales",
+    "url": "/api/paciente/vitales",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 190,
+    "y": 280,
+    "wires": [
+      [
+        "fn_read_latest"
+      ]
+    ]
+  },
+  {
+    "id": "fn_read_latest",
+    "type": "function",
+    "z": "tab_lab06",
+    "name": "Recuperar de Contexto",
+    "func": "let ultimo = flow.get(\"ultimo_paciente_data\");\n\nif (!ultimo) {\n    msg.statusCode = 404;\n    msg.payload = {\n        error: \"Not Found\",\n        message: \"Aún no se han recibido registros de telemetría médica\"\n    };\n} else {\n    msg.statusCode = 200;\n    msg.payload = {\n        status: \"ok\",\n        data: ultimo\n    };\n}\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 470,
+    "y": 280,
+    "wires": [
+      [
+        "http_resp_get"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_get",
+    "type": "http response",
+    "z": "tab_lab06",
+    "name": "Respuesta 200 / 404",
+    "statusCode": "",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 780,
+    "y": 280,
+    "wires": []
+  }
+]

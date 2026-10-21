@@ -1,0 +1,141 @@
+[
+  {
+    "id": "tab_lab05",
+    "type": "tab",
+    "label": "Lab 05 - MQTT Communication",
+    "disabled": false,
+    "info": "Laboratorio 05: Publicación y suscripción MQTT con tópicos biomédicos hacia broker EMQX."
+  },
+  {
+    "id": "mqtt_broker_emqx",
+    "type": "mqtt-broker",
+    "name": "EMQX Public Broker",
+    "broker": "broker.emqx.io",
+    "port": "1883",
+    "clientid": "upch_nodered_client_lab05",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "upch/telesalud/nodered/status",
+    "birthQos": "1",
+    "birthRetain": "false",
+    "birthPayload": "Node-RED Central Conectado",
+    "birthMsg": {},
+    "closeTopic": "upch/telesalud/nodered/status",
+    "closeQos": "1",
+    "closeRetain": "false",
+    "closePayload": "Node-RED Central Desconectado",
+    "closeMsg": {},
+    "willTopic": "upch/telesalud/nodered/status",
+    "willQos": "1",
+    "willRetain": "false",
+    "willPayload": "Node-RED Central Caída Inesperada",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "inj_pub_vitals",
+    "type": "inject",
+    "z": "tab_lab05",
+    "name": "Simular Muestra Paciente 01",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "fn_gen_vitals"
+      ]
+    ]
+  },
+  {
+    "id": "fn_gen_vitals",
+    "type": "function",
+    "z": "tab_lab05",
+    "name": "Generar Payload Biomédico",
+    "func": "// Generar valores simulados aleatorios dentro de rango fisiológico\nlet bpm = Math.floor(Math.random() * (95 - 65 + 1)) + 65;\nlet spo2 = Math.floor(Math.random() * (100 - 95 + 1)) + 95;\nlet temp = Number((36.2 + Math.random() * 0.8).toFixed(1));\n\nmsg.payload = {\n    dispositivo: \"ESP32-ICU-UPCH\",\n    paciente_id: \"PAC-2026-01\",\n    bpm: bpm,\n    spo2: spo2,\n    temp_c: temp,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 120,
+    "wires": [
+      [
+        "mqtt_out_vitals"
+      ]
+    ]
+  },
+  {
+    "id": "mqtt_out_vitals",
+    "type": "mqtt out",
+    "z": "tab_lab05",
+    "name": "Publicar en MQTT",
+    "topic": "upch/telesalud/paciente_01/vitales",
+    "qos": "1",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "mqtt_broker_emqx",
+    "x": 750,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "mqtt_in_vitals",
+    "type": "mqtt in",
+    "z": "tab_lab05",
+    "name": "Escuchar Pacientes UPCH (+)",
+    "topic": "upch/telesalud/+/vitales",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "mqtt_broker_emqx",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 200,
+    "y": 240,
+    "wires": [
+      [
+        "debug_mqtt_central"
+      ]
+    ]
+  },
+  {
+    "id": "debug_mqtt_central",
+    "type": "debug",
+    "z": "tab_lab05",
+    "name": "Central Telesalud Recibe",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 510,
+    "y": 240,
+    "wires": []
+  }
+]

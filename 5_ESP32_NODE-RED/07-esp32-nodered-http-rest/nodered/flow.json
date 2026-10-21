@@ -1,0 +1,77 @@
+[
+  {
+    "id": "tab_esp32_p07",
+    "type": "tab",
+    "label": "ESP32 P07 - REST Vitals Receiver",
+    "disabled": false,
+    "info": "Servidor REST en Node-RED para procesar telemetría clínica enviada por el ESP32."
+  },
+  {
+    "id": "http_in_esp32_vitals",
+    "type": "http in",
+    "z": "tab_esp32_p07",
+    "name": "POST /api/v1/telesalud/vitales",
+    "url": "/api/v1/telesalud/vitales",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 210,
+    "y": 140,
+    "wires": [
+      [
+        "fn_validate_esp32_rest"
+      ]
+    ]
+  },
+  {
+    "id": "fn_validate_esp32_rest",
+    "type": "function",
+    "z": "tab_esp32_p07",
+    "name": "Validar Telemetría ESP32",
+    "func": "let d = msg.payload;\n\n// Verificar campos obligatorios\nif (!d || !d.paciente_id || d.frecuencia_cardiaca === undefined || d.spo2 === undefined) {\n    msg.statusCode = 400;\n    msg.payload = {\n        estado: \"ERROR\",\n        codigo: 400,\n        mensaje: \"Estructura JSON inválida para signos vitales\"\n    };\n    return msg;\n}\n\n// Clasificación clínica\nlet alerta = \"NINGUNA\";\nif (d.spo2 < 90) {\n    alerta = \"CRITICA_DESATURACION\";\n} else if (d.frecuencia_cardiaca > 100) {\n    alerta = \"TAQUICARDIA\";\n}\n\n// Guardar última muestra en contexto\nflow.set(\"ultimo_registro_esp32\", d);\n\n// Respuesta de éxito al microcontrolador\nmsg.statusCode = 201;\nmsg.payload = {\n    estado: \"REGISTRADO\",\n    codigo: 201,\n    alerta_clinica: alerta,\n    servidor_timestamp: new Date().toISOString()\n};\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 140,
+    "wires": [
+      [
+        "http_resp_esp32_rest",
+        "debug_esp32_rest_received"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_esp32_rest",
+    "type": "http response",
+    "z": "tab_esp32_p07",
+    "name": "HTTP 201 Created",
+    "statusCode": "",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 800,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "debug_esp32_rest_received",
+    "type": "debug",
+    "z": "tab_esp32_p07",
+    "name": "Log Telemetría Clínica",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 800,
+    "y": 200,
+    "wires": []
+  }
+]

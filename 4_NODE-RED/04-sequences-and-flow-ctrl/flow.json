@@ -1,0 +1,375 @@
+[
+  {
+    "id": "tab_lab04",
+    "type": "tab",
+    "label": "Lab 04 - Switch, Change & Sequences",
+    "disabled": false,
+    "info": "Laboratorio 04: Control de flujo condicional, triage de signos vitales y procesamiento en ráfagas (Split/Join)."
+  },
+  {
+    "id": "inj_critico",
+    "type": "inject",
+    "z": "tab_lab04",
+    "name": "SpO2 Crítico (86%)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"paciente\":\"Cama-01\",\"bpm\":118,\"spo2\":86}",
+    "payloadType": "json",
+    "x": 150,
+    "y": 100,
+    "wires": [
+      [
+        "sw_triage"
+      ]
+    ]
+  },
+  {
+    "id": "inj_alerta",
+    "type": "inject",
+    "z": "tab_lab04",
+    "name": "SpO2 Observación (92%)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"paciente\":\"Cama-02\",\"bpm\":84,\"spo2\":92}",
+    "payloadType": "json",
+    "x": 170,
+    "y": 160,
+    "wires": [
+      [
+        "sw_triage"
+      ]
+    ]
+  },
+  {
+    "id": "inj_normal",
+    "type": "inject",
+    "z": "tab_lab04",
+    "name": "SpO2 Normal (98%)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"paciente\":\"Cama-03\",\"bpm\":70,\"spo2\":98}",
+    "payloadType": "json",
+    "x": 150,
+    "y": 220,
+    "wires": [
+      [
+        "sw_triage"
+      ]
+    ]
+  },
+  {
+    "id": "sw_triage",
+    "type": "switch",
+    "z": "tab_lab04",
+    "name": "Triage por SpO2",
+    "property": "payload.spo2",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "lt",
+        "v": "90",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "90",
+        "vt": "num",
+        "v2": "94",
+        "v2t": "num"
+      },
+      {
+        "t": "gt",
+        "v": "94",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 420,
+    "y": 160,
+    "wires": [
+      [
+        "ch_critico"
+      ],
+      [
+        "ch_alerta"
+      ],
+      [
+        "ch_normal"
+      ]
+    ]
+  },
+  {
+    "id": "ch_critico",
+    "type": "change",
+    "z": "tab_lab04",
+    "name": "Nivel: CRÍTICO",
+    "rules": [
+      {
+        "t": "set",
+        "p": "prioridad",
+        "pt": "msg",
+        "to": "CODIGO_ROJO",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "payload.alerta",
+        "pt": "msg",
+        "to": "URGENCIA: Hipoxemia severa detectada",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 640,
+    "y": 100,
+    "wires": [
+      [
+        "dbg_critico"
+      ]
+    ]
+  },
+  {
+    "id": "ch_alerta",
+    "type": "change",
+    "z": "tab_lab04",
+    "name": "Nivel: OBSERVACIÓN",
+    "rules": [
+      {
+        "t": "set",
+        "p": "prioridad",
+        "pt": "msg",
+        "to": "CODIGO_AMARILLO",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "payload.alerta",
+        "pt": "msg",
+        "to": "Monitorear continuamente",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 660,
+    "y": 160,
+    "wires": [
+      [
+        "dbg_alerta"
+      ]
+    ]
+  },
+  {
+    "id": "ch_normal",
+    "type": "change",
+    "z": "tab_lab04",
+    "name": "Nivel: ESTABLE",
+    "rules": [
+      {
+        "t": "set",
+        "p": "prioridad",
+        "pt": "msg",
+        "to": "CODIGO_VERDE",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 640,
+    "y": 220,
+    "wires": [
+      [
+        "dbg_normal"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_critico",
+    "type": "debug",
+    "z": "tab_lab04",
+    "name": "🚨 ALARMA ROJA UCI",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "dbg_alerta",
+    "type": "debug",
+    "z": "tab_lab04",
+    "name": "⚠️ Alerta Amarilla",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 870,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "dbg_normal",
+    "type": "debug",
+    "z": "tab_lab04",
+    "name": "✅ Registro Estable",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 870,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "inj_ecg_batch",
+    "type": "inject",
+    "z": "tab_lab04",
+    "name": "Ráfaga ECG (10 muestras)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "[512,520,535,780,1023,640,510,505,512,515]",
+    "payloadType": "json",
+    "x": 180,
+    "y": 320,
+    "wires": [
+      [
+        "split_samples"
+      ]
+    ]
+  },
+  {
+    "id": "split_samples",
+    "type": "split",
+    "z": "tab_lab04",
+    "name": "Segmentar Array",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 410,
+    "y": 320,
+    "wires": [
+      [
+        "fn_filter_offset"
+      ]
+    ]
+  },
+  {
+    "id": "fn_filter_offset",
+    "type": "function",
+    "z": "tab_lab04",
+    "name": "Restar Offset DC (512)",
+    "func": "// Remover offset de 512 para centrar en cero\nmsg.payload = msg.payload - 512;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 320,
+    "wires": [
+      [
+        "join_samples"
+      ]
+    ]
+  },
+  {
+    "id": "join_samples",
+    "type": "join",
+    "z": "tab_lab04",
+    "name": "Reunir Vector",
+    "mode": "auto",
+    "build": "array",
+    "property": "payload",
+    "count": "",
+    "joiner": "\\n",
+    "joinerType": "str",
+    "accumulate": "false",
+    "timeout": "",
+    "x": 860,
+    "y": 320,
+    "wires": [
+      [
+        "dbg_ecg_filtrado"
+      ]
+    ]
+  },
+  {
+    "id": "dbg_ecg_filtrado",
+    "type": "debug",
+    "z": "tab_lab04",
+    "name": "Vector ECG Centrado",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1070,
+    "y": 320,
+    "wires": []
+  }
+]

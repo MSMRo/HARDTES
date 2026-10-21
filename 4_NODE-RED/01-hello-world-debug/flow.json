@@ -1,0 +1,131 @@
+[
+  {
+    "id": "tab_lab01",
+    "type": "tab",
+    "label": "Lab 01 - Hello World & Debug",
+    "disabled": false,
+    "info": "Laboratorio 01 de Hardware para Telesalud UPCH: Hello World, Inyección y Debugging."
+  },
+  {
+    "id": "inject_string",
+    "type": "inject",
+    "z": "tab_lab01",
+    "name": "Inyectar Saludo",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "upch/telesalud/saludo",
+    "payload": "Hola Mundo desde Telesalud UPCH - Telemetría Médica",
+    "payloadType": "str",
+    "x": 160,
+    "y": 100,
+    "wires": [
+      [
+        "debug_payload"
+      ]
+    ]
+  },
+  {
+    "id": "inject_timestamp",
+    "type": "inject",
+    "z": "tab_lab01",
+    "name": "Heartbeat cada 5s",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "upch/telesalud/heartbeat",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 180,
+    "wires": [
+      [
+        "debug_payload",
+        "debug_full_msg"
+      ]
+    ]
+  },
+  {
+    "id": "inject_json_patient",
+    "type": "inject",
+    "z": "tab_lab01",
+    "name": "Inyectar Datos Paciente",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "upch/telesalud/paciente",
+    "payload": "{\"patient_id\":\"PAC-1002\",\"device\":\"ESP32-Holter\",\"battery_pct\":89,\"status\":\"ONLINE\"}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 260,
+    "wires": [
+      [
+        "debug_full_msg"
+      ]
+    ]
+  },
+  {
+    "id": "debug_payload",
+    "type": "debug",
+    "z": "tab_lab01",
+    "name": "Ver msg.payload",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 490,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "debug_full_msg",
+    "type": "debug",
+    "z": "tab_lab01",
+    "name": "Ver Objeto msg Completo",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 510,
+    "y": 240,
+    "wires": []
+  }
+]

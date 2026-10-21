@@ -1,0 +1,190 @@
+[
+  {
+    "id": "tab_lab03",
+    "type": "tab",
+    "label": "Lab 03 - Parsers (JSON, CSV, XML)",
+    "disabled": false,
+    "info": "Laboratorio 03: Transformación de formatos heterogéneos de telemetría médica en Node-RED."
+  },
+  {
+    "id": "inject_csv_raw",
+    "type": "inject",
+    "z": "tab_lab03",
+    "name": "Trama CSV Cruda",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "2026-10-20T17:15:00Z,PAC-089,78,97,36.8",
+    "payloadType": "str",
+    "x": 160,
+    "y": 100,
+    "wires": [
+      [
+        "csv_parser"
+      ]
+    ]
+  },
+  {
+    "id": "csv_parser",
+    "type": "csv",
+    "z": "tab_lab03",
+    "name": "CSV Parser (Signos Vitales)",
+    "sep": ",",
+    "hdrin": false,
+    "hdrout": "none",
+    "multi": "one",
+    "ret": "\\n",
+    "temp": "timestamp,paciente_id,bpm,spo2,temp_c",
+    "skip": "0",
+    "strings": false,
+    "include_empty_strings": "",
+    "include_null_values": "",
+    "x": 420,
+    "y": 100,
+    "wires": [
+      [
+        "debug_csv_parsed"
+      ]
+    ]
+  },
+  {
+    "id": "debug_csv_parsed",
+    "type": "debug",
+    "z": "tab_lab03",
+    "name": "Objeto desde CSV",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 710,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "inject_json_str",
+    "type": "inject",
+    "z": "tab_lab03",
+    "name": "String JSON Serializado",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"monitor\":\"ESP32-ICU-02\",\"alarma\":false,\"bateria\":95}",
+    "payloadType": "str",
+    "x": 180,
+    "y": 180,
+    "wires": [
+      [
+        "json_parser"
+      ]
+    ]
+  },
+  {
+    "id": "json_parser",
+    "type": "json",
+    "z": "tab_lab03",
+    "name": "JSON Parser Bi-direccional",
+    "property": "payload",
+    "action": "obj",
+    "pretty": true,
+    "x": 430,
+    "y": 180,
+    "wires": [
+      [
+        "debug_json_parsed"
+      ]
+    ]
+  },
+  {
+    "id": "debug_json_parsed",
+    "type": "debug",
+    "z": "tab_lab03",
+    "name": "Objeto JS desde JSON",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 730,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "inject_xml_raw",
+    "type": "inject",
+    "z": "tab_lab03",
+    "name": "Doc XML Biomédico",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "<telemetria><paciente id=\"PAC-089\"><frecuencia_cardiaca>78</frecuencia_cardiaca><spo2>97</spo2></paciente></telemetria>",
+    "payloadType": "str",
+    "x": 170,
+    "y": 260,
+    "wires": [
+      [
+        "xml_parser"
+      ]
+    ]
+  },
+  {
+    "id": "xml_parser",
+    "type": "xml",
+    "z": "tab_lab03",
+    "name": "XML Parser",
+    "property": "payload",
+    "attr": "$",
+    "chr": "_",
+    "x": 390,
+    "y": 260,
+    "wires": [
+      [
+        "debug_xml_parsed"
+      ]
+    ]
+  },
+  {
+    "id": "debug_xml_parsed",
+    "type": "debug",
+    "z": "tab_lab03",
+    "name": "Objeto JS desde XML",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 720,
+    "y": 260,
+    "wires": []
+  }
+]

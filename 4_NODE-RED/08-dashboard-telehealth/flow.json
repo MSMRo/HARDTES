@@ -1,0 +1,305 @@
+[
+  {
+    "id": "tab_lab08",
+    "type": "tab",
+    "label": "Lab 08 - Telehealth Dashboard",
+    "disabled": false,
+    "info": "Laboratorio 08: Interfaz gráfica web de monitoreo de signos vitales con node-red-dashboard."
+  },
+  {
+    "id": "ui_base_telehealth",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-dark",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#0094CE",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": true,
+        "reset": false
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#097479",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": false
+      },
+      "customTheme": {
+        "name": "Untitled Theme 1",
+        "default": "#4B7930",
+        "baseColor": "#4B7930",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#097479",
+          "value": "#097479",
+          "type": "sur"
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#097479",
+          "type": "page-titlebar-backgroundColor"
+        },
+        "page-backgroundColor": {
+          "value": "#111111",
+          "type": "page-backgroundColor"
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#333333",
+          "type": "page-sidebar-backgroundColor"
+        },
+        "group-textColor": {
+          "value": "#0eb8c0",
+          "type": "group-textColor"
+        },
+        "group-borderColor": {
+          "value": "#555555",
+          "type": "group-borderColor"
+        },
+        "group-backgroundColor": {
+          "value": "#222222",
+          "type": "group-backgroundColor"
+        },
+        "widget-textColor": {
+          "value": "#eeeeee",
+          "type": "widget-textColor"
+        },
+        "widget-backgroundColor": {
+          "value": "#097479",
+          "type": "widget-backgroundColor"
+        },
+        "widget-borderColor": {
+          "value": "#333333",
+          "type": "widget-borderColor"
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+        }
+      },
+      "angularTheme": {
+        "primary": "indigo",
+        "accents": "blue",
+        "warn": "red",
+        "background": "grey",
+        "palette": "light"
+      }
+    },
+    "site": {
+      "name": "UPCH TeleSalud Monitor",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "lockMenu": "false",
+      "allowTempTheme": "true",
+      "dateFormat": "DD/MM/YYYY",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 6,
+        "gy": 6,
+        "cx": 6,
+        "cy": 6,
+        "px": 0,
+        "py": 0
+      }
+    }
+  },
+  {
+    "id": "ui_tab_telehealth",
+    "type": "ui_tab",
+    "name": "Monitoreo UCI",
+    "icon": "dashboard",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "ui_group_vitals",
+    "type": "ui_group",
+    "name": "Signos Vitales Paciente",
+    "tab": "ui_tab_telehealth",
+    "order": 1,
+    "disp": true,
+    "width": "6",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_charts",
+    "type": "ui_group",
+    "name": "Tendencia Electrocardiográfica / BPM",
+    "tab": "ui_tab_telehealth",
+    "order": 2,
+    "disp": true,
+    "width": "12",
+    "collapse": false
+  },
+  {
+    "id": "inj_sim_sensor",
+    "type": "inject",
+    "z": "tab_lab08",
+    "name": "Simulador Biomédico (2s)",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "2",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.5,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 140,
+    "wires": [
+      [
+        "fn_generate_signals"
+      ]
+    ]
+  },
+  {
+    "id": "fn_generate_signals",
+    "type": "function",
+    "z": "tab_lab08",
+    "name": "Generador de Señales",
+    "func": "// Generar valores dinámicos\nlet bpm = Math.floor(Math.random() * (85 - 68 + 1)) + 68;\nlet spo2 = Math.floor(Math.random() * (99 - 95 + 1)) + 95;\nlet temp = Number((36.4 + Math.random() * 0.5).toFixed(1));\n\nreturn [\n    { payload: spo2 },   // Salida 1: SpO2\n    { payload: bpm },    // Salida 2: BPM\n    { payload: temp },   // Salida 3: Temp\n    { payload: \"PAC-101 | Cama 04 | Normal\" } // Salida 4: Info\n];",
+    "outputs": 4,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 140,
+    "wires": [
+      [
+        "ui_gauge_spo2"
+      ],
+      [
+        "ui_chart_bpm"
+      ],
+      [
+        "ui_gauge_temp"
+      ],
+      [
+        "ui_text_patient"
+      ]
+    ]
+  },
+  {
+    "id": "ui_gauge_spo2",
+    "type": "ui_gauge",
+    "z": "tab_lab08",
+    "name": "Gauge SpO2",
+    "group": "ui_group_vitals",
+    "order": 1,
+    "width": 6,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Saturación de Oxígeno (SpO2)",
+    "label": "%",
+    "format": "{{value}}",
+    "min": "70",
+    "max": "100",
+    "colors": [
+      "#ca3838",
+      "#e6e600",
+      "#00e600"
+    ],
+    "seg1": "90",
+    "seg2": "95",
+    "className": "",
+    "x": 700,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "ui_chart_bpm",
+    "type": "ui_chart",
+    "z": "tab_lab08",
+    "name": "Gráfico BPM",
+    "group": "ui_group_charts",
+    "order": 1,
+    "width": 12,
+    "height": 6,
+    "label": "Frecuencia Cardíaca (lpm) en Tiempo Real",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "bezier",
+    "nodata": "Esperando lecturas de sensor...",
+    "dot": false,
+    "ymin": "40",
+    "ymax": "140",
+    "removeOlder": "2",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "60",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "className": "",
+    "x": 690,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_temp",
+    "type": "ui_gauge",
+    "z": "tab_lab08",
+    "name": "Gauge Temperatura",
+    "group": "ui_group_vitals",
+    "order": 2,
+    "width": 6,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Temperatura Corporal",
+    "label": "°C",
+    "format": "{{value}}",
+    "min": "34",
+    "max": "42",
+    "colors": [
+      "#3871ca",
+      "#00e600",
+      "#ca3838"
+    ],
+    "seg1": "36",
+    "seg2": "37.5",
+    "className": "",
+    "x": 720,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "ui_text_patient",
+    "type": "ui_text",
+    "z": "tab_lab08",
+    "name": "Texto Estado",
+    "group": "ui_group_vitals",
+    "order": 3,
+    "width": 6,
+    "height": 2,
+    "name": "",
+    "label": "Estado Paciente:",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 700,
+    "y": 260,
+    "wires": []
+  }
+]

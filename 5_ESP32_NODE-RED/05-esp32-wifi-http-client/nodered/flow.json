@@ -1,0 +1,77 @@
+[
+  {
+    "id": "tab_esp32_p05",
+    "type": "tab",
+    "label": "ESP32 P05 - HTTP Ingest Endpoint",
+    "disabled": false,
+    "info": "Endpoint HTTP POST en Node-RED para recibir telemetría médica del ESP32 en modo Station."
+  },
+  {
+    "id": "http_in_telemetria",
+    "type": "http in",
+    "z": "tab_esp32_p05",
+    "name": "POST /api/telemetria",
+    "url": "/api/telemetria",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 200,
+    "y": 140,
+    "wires": [
+      [
+        "fn_process_telemetria"
+      ]
+    ]
+  },
+  {
+    "id": "fn_process_telemetria",
+    "type": "function",
+    "z": "tab_esp32_p05",
+    "name": "Procesar y Confirmar",
+    "func": "let d = msg.payload;\n\n// Registrar fecha de ingestión en el servidor\nd.recibido_en = new Date().toISOString();\n\n// Respuesta HTTP 201 Created para el ESP32\nmsg.statusCode = 201;\nmsg.payload = {\n    resultado: \"OK\",\n    nodo: d.nodo_id,\n    mensaje: \"Telemetría ingresada al sistema hospitalario con éxito\"\n};\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 140,
+    "wires": [
+      [
+        "http_resp_telemetria",
+        "debug_esp32_payload"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_telemetria",
+    "type": "http response",
+    "z": "tab_esp32_p05",
+    "name": "HTTP 201 Created",
+    "statusCode": "",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 780,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "debug_esp32_payload",
+    "type": "debug",
+    "z": "tab_esp32_p05",
+    "name": "Telemetría ESP32 Ingerida",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 790,
+    "y": 200,
+    "wires": []
+  }
+]

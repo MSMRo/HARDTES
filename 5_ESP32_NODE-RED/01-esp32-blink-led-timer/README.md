@@ -15,16 +15,7 @@ En este proyecto aprenderás a:
 
 En la mayoría de placas de desarrollo ESP32 (como la ESP32 WROOM-32 DevKit v1 de 30 o 38 pines), el LED integrado está conectado al **GPIO 2** (o GPIO 1 en algunos clones).
 
-```
-   ESP32 DevKit v1
-  +---------------+
-  |        [ESP32]|
-  |               |
-  | GPIO 2 >------+-----[ R = 330 Ω ]-----(+) [ LED Externo ]
-  |               |                            |
-  | GND    >------+----------------------------(-)
-  +---------------+
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20121812%20(2).png)
 
 > **Nota:** Puedes utilizar directamente el LED azul integrado en la tarjeta conectada a `GPIO 2`, o conectar un LED externo en serie con un resistor limitador de 220 Ω a 330 Ω hacia tierra (GND).
 
@@ -46,7 +37,7 @@ Para familiarizarse con el concepto de latido (*heartbeat*) en la nube, el flujo
 
 ## 5. Instrucciones de Compilación y Carga
 
-1. Abre el archivo [`firmware/blink_timer.ino`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/5_ESP32_NODE-RED/01-esp32-blink-led-timer/firmware/blink_timer.ino) en **Arduino IDE**.
+1. Abre el archivo [`firmware/blink_timer.ino`](./HARDTES/5_ESP32_NODE-RED/01-esp32-blink-led-timer/firmware/blink_timer.ino) en **Arduino IDE**.
 2. En el menú **Herramientas > Placa**, selecciona: `ESP32 Dev Module` (o tu modelo específico).
 3. Selecciona el **Puerto COM** asignado por Windows al conectar tu cable micro-USB o USB-C.
 4. Presiona el botón **Subir** (Upload). *(Si tu placa requiere presionar el botón `BOOT`, mantenlo presionado cuando aparezca `Connecting........___` hasta que inicie la escritura).*

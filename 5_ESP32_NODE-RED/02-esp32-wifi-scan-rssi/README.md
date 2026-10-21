@@ -13,22 +13,7 @@ El indicador **RSSI** (*Received Signal Strength Indicator*) se mide en decibeli
 
 ## 2. Diagrama de Funcionamiento
 
-```
-                 +-------------------+
-                 | ESP32 RF Receiver |
-                 +-------------------+
-                           |
-                  (Escaneo 2.4 GHz)
-                           |
-             +-------------+-------------+
-             |                           |
-     [ Red Hospitalaria ]        [ Red Visitante ]
-     SSID: UPCH-Salud-5G         SSID: Invitados
-     RSSI: -52 dBm (Óptimo)      RSSI: -88 dBm (Crítico)
-             |
-             v
-   [ Salida Serial JSON ] ----> [ Gateway Node-RED ]
-```
+![](./imgs/Diagrama%20ESP32%20RF%20y%20Gateway%20Node-RED.png)
 
 ---
 
@@ -49,7 +34,7 @@ El flujo complementario procesa el informe de auditoría de red generado por el 
 
 ## 5. Instrucciones de Compilación y Prueba
 
-1. Abre [`firmware/wifi_scan_rssi.ino`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/5_ESP32_NODE-RED/02-esp32-wifi-scan-rssi/firmware/wifi_scan_rssi.ino) en Arduino IDE.
+1. Abre [`firmware/wifi_scan_rssi.ino`](./HARDTES/5_ESP32_NODE-RED/02-esp32-wifi-scan-rssi/firmware/wifi_scan_rssi.ino) en Arduino IDE.
 2. Selecciona la placa `ESP32 Dev Module` y tu puerto COM.
 3. Sube el código y abre el Monitor Serie a `115200 baudios`.
 4. El ESP32 escaneará el espectro de 2.4 GHz cada 10 segundos mostrando el listado de redes, canales, tipo de cifrado y dBm.

@@ -33,13 +33,8 @@ timestamp,paciente_id,bpm,spo2,temperatura_c,estado
 
 ## 4. Arquitectura del Flujo
 
-```
- [ Inject: Muestra Médica ] ---> [ Function: Formatear a CSV ] ---> [ File: Append pacientes_vitales.csv ]
-                                                                                   |
-                                                                          (Archivo en disco)
-                                                                                   |
- [ Inject: Leer Historial ] ----> [ File In: Leer archivo ] -------> [ Debug: Contenido Completo ]
-```
+
+![](./imgs/image.png)
 
 ---
 
@@ -56,7 +51,7 @@ timestamp,paciente_id,bpm,spo2,temperatura_c,estado
 ---
 
 ## 6. Cómo Importar y Ejecutar
-1. Copia el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/07-storage-and-databases/flow.json).
+1. Copia el archivo [`flow.json`](./HARDTES/4_NODE-RED/07-storage-and-databases/flow.json).
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Haz clic repetidamente en **Registrar Muestra Paciente**:
    - Cada clic genera un registro con fecha, hora y datos vitales agregándose al archivo `pacientes_vitales.csv` en el directorio de trabajo de Node-RED.

@@ -39,15 +39,11 @@ Ejemplos prácticos:
 
 ## 4. Arquitectura del Flujo
 
-```
- [ Inject: Generador Vitals ] ---> [ Function: JSON Telemetría ] ---> [ MQTT Out ]
-                                                                            |
-                                                                   (Broker EMQX / Mosquitto)
-                                                                            |
-                                                                            v
- [ Debug: Monitor Central ] <--- [ JSON Parser ] <-------------------- [ MQTT In ]
-                                                                 (upch/telesalud/+/vitales)
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20114412.png)
+
+![](./imgs/emqx.png)
+
+![](./imgs/mqqtt.png)
 
 ---
 
@@ -57,10 +53,23 @@ Ejemplos prácticos:
 - **Client ID:** Generado automáticamente con prefijo `upch_nodered_` para evitar colisiones.
 - **QoS:** `1` (At least once — recomendado para telemetría médica periódica).
 
+
+Otros Brokers:
+
+| Broker / Proveedor | Host (Dirección) | Puerto MQTT (Sin cifrar) | Puerto MQTT (Seguro/TLS) | Puerto WebSockets | Uso Ideal y Recomendaciones |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **HiveMQ** | `broker.hivemq.com` | `1883` | `8883` | `8000` | Pruebas generales y experimentación rápida por su alta disponibilidad. |
+| **Eclipse Mosquitto** | `test.mosquitto.org` | `1883` | `8883` | `8080` | Servidor de prueba oficial de código abierto para validar clientes y scripts. |
+| **EMQX** | `broker.emqx.io` | `1883` | `8883` | `8083` | Excelente rendimiento; cuenta con panel web público para pruebas directas. |
+| **Eclipse IoT** | `mqtt.eclipseprojects.io` | `1883` | `8883` | *No especificado* | Punto de acceso alternativo provisto por la fundación Eclipse para desarrolladores IoT. |
+
+⚠️ Advertencia importante: Los brokers públicos son totalmente abiertos y compartidos con cualquier persona en el mundo. Nunca envíes contraseñas, datos sensibles, información médica de pacientes o credenciales privadas a través de estos servidores, ya que cualquier usuario conectado puede suscribirse a los canales (topics) y ver la información en tiempo real. Utilízalos estrictamente para datos de prueba o simulación.
+
+
 ---
 
 ## 6. Cómo Importar y Ejecutar
-1. Copia el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/05-mqtt-communication/flow.json).
+1. Copia el archivo [`flow.json`](./HARDTES/4_NODE-RED/05-mqtt-communication/flow.json).
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Verifica que ambos nodos MQTT muestren un indicador verde con la palabra **connected**.
 4. Haz clic en el botón de inyección del nodo **Publicar Signos Vitales**:

@@ -24,25 +24,8 @@ Si tu instalación de Node-RED aún no tiene instalados los nodos de dashboard:
 
 ## 3. Elementos de la Interfaz Clínica
 
-```
-+-----------------------------------------------------------------------+
-|  🏥 UPCH TELESALUD — ESTACIÓN DE ENFERMERÍA (UCI PEDIÁTRICA)          |
-+-----------------------------------------------------------------------+
-|  [ PACIENTE: Juan Pérez - Cama 04 ]            [ ESTADO: ESTABLE 🟢 ] |
-+-----------------------------------+-----------------------------------+
-|  SATURACIÓN DE OXÍGENO (SpO2)     |  TEMPERATURA CORPORAL (°C)        |
-|               98 %                |               36.7 °C             |
-|       (Gauge Semicircular)        |        (Gauge Tipo Termómetro)    |
-+-----------------------------------+-----------------------------------+
-|  HISTORIAL DE FRECUENCIA CARDÍACA (lpm)                               |
-|   120 |                                                               |
-|    80 |  /\    /\    /\    /\    /\                                   |
-|    40 |    \  /  \  /  \  /  \  /  \                                  |
-|     0 +-----------------------------------------------------------    |
-|       17:35        17:36        17:37        17:38      (Tiempo Real) |
-+-----------------------------------------------------------------------+
-```
-
+![](./imgs/image1.png)
+![](./imgs/image.png)
 ---
 
 ## 4. Estructura de los Nodos del Flujo
@@ -58,7 +41,7 @@ Si tu instalación de Node-RED aún no tiene instalados los nodos de dashboard:
 ---
 
 ## 5. Cómo Importar y Visualizar
-1. Copia el contenido de [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/08-dashboard-telehealth/flow.json).
+1. Copia el contenido de [`flow.json`](./HARDTES/4_NODE-RED/08-dashboard-telehealth/flow.json).
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Abre una nueva pestaña en tu navegador web y navega a:
    ```

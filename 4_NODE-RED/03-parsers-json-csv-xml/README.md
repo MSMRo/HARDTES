@@ -23,13 +23,7 @@ En este laboratorio aprenderás a:
 
 ## 3. Arquitectura del Flujo
 
-```
- [ Inject: Trama CSV Cruda ] ---> [ Parser: CSV a Objeto ] ---> [ Debug: Objeto Parseado ]
-                                                                       |
- [ Inject: String JSON ] --------> [ Parser: JSON ] -------------> [ Transformación ]
-                                                                       |
- [ Inject: Bloque XML ] ---------> [ Parser: XML a JS ] -----------> [ Debug: JSON Unificado ]
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20112323.png)
 
 ### Ejemplos de Cargas Útiles:
 
@@ -63,7 +57,7 @@ Para convertir la trama CSV automáticamente a un objeto:
 ---
 
 ## 5. Cómo Importar y Probar
-1. Abre el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/03-parsers-json-csv-xml/flow.json) y cópialo.
+1. Abre el archivo [`flow.json`](./HARDTES/4_NODE-RED/03-parsers-json-csv-xml/flow.json) y cópialo.
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Haz clic en el nodo **Inject Trama CSV Cruda**:
    - Observa en el panel Debug cómo la cadena de texto plana se transformó instantáneamente en un objeto tipado con propiedades numéricas accesibles (`msg.payload.bpm`, etc.).

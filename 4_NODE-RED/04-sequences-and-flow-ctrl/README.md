@@ -25,13 +25,7 @@ En este laboratorio aprenderás a:
 
 ## 3. Arquitectura del Flujo de Triage Clínico
 
-```
-                             +--> [ Regla 1: SpO2 < 90 ] ----> [ Change: CRÍTICO ] ---> [ Alarma Roja ]
-                             |
- [ Sensor SpO2 (Simulado) ] -+--> [ Regla 2: 90 <= SpO2 <= 94 ] -> [ Change: ALERTA ] -> [ Alerta Amarilla ]
-                             |
-                             +--> [ Regla 3: SpO2 > 94 ] ----> [ Change: ESTABLE ] ---> [ Log Normal ]
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20112802.png)
 
 ### Reglas Clínicas Configuradas en el Nodo Switch:
 1. `msg.payload.spo2 < 90` -> Salida 1 (Urgencia Máxima / Hipoxemia Severa).
@@ -57,7 +51,7 @@ Los microcontroladores como el ESP32 suelen tomar muestras a 100 Hz o 250 Hz. Tr
 ---
 
 ## 5. Cómo Importar y Probar
-1. Copia el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/04-sequences-and-flow-ctrl/flow.json).
+1. Copia el archivo [`flow.json`](./HARDTES/4_NODE-RED/04-sequences-and-flow-ctrl/flow.json).
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Prueba los botones de inyección:
    - **SpO2 Crítico (86%):** Verás cómo el flujo enruta el mensaje únicamente a la alarma roja.

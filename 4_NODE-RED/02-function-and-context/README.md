@@ -52,13 +52,7 @@ let promedio = (suma / historial.length).toFixed(1);
 
 ## 3. Arquitectura del Flujo
 
-```
- [ Inject: Muestra BPM (72) ] --\
- [ Inject: Muestra BPM (115) ] -+-> [ Function: Filtro & Media Móvil ] ---> [ Debug: Datos Procesados ]
- [ Inject: Muestra BPM (52) ] --/          |
-                                           v
-                                    [ Flow Context ] (Guarda historial)
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20111643.png)
 
 ---
 
@@ -110,7 +104,7 @@ return msg;
 ---
 
 ## 5. Cómo Importar y Ejecutar
-1. Copia el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/02-function-and-context/flow.json).
+1. Copia el archivo [`flow.json`](./HARDTES/4_NODE-RED/02-function-and-context/flow.json).
 2. En Node-RED, dirígete a `☰` > **Import** y pega el contenido.
 3. Haz clic en **Deploy**.
 4. Dispara los diferentes nodos de inyección (BPM Normal = 72, Taquicardia = 115, Bradicardia = 52).

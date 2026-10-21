@@ -22,13 +22,7 @@ En telesalud, este flujo simula la generación periódica de paquetes de estado 
 
 ## 3. Arquitectura del Flujo
 
-```
- [ Inject: "Hello World" ] -----\
-                                  +--> [ Debug: Inspeccionar msg.payload ]
- [ Inject: Timestamp actual ] ---+
-                                  |
- [ Inject: JSON Paciente ] ------+---> [ Debug: Objeto msg completo ]
-```
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20111033.png)
 
 ### Tipos de Datos Inyectados:
 1. **String:** `"Monitor Telesalud UPCH activo"` con tópico `upch/status`.
@@ -76,7 +70,7 @@ En telesalud, este flujo simula la generación periódica de paquetes de estado 
 
 ## 5. Importar el Flujo Directamente
 Si prefieres cargar el flujo preconfigurado:
-1. Copia el contenido del archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/01-hello-world-debug/flow.json).
+1. Copia el contenido del archivo [`flow.json`](./HARDTES/4_NODE-RED/01-hello-world-debug/flow.json).
 2. En Node-RED, abre el menú de hamburguesa superior derecho `☰` > **Import**.
 3. Pega el JSON en la ventana emergente y presiona **Import**.
 4. Haz clic en **Deploy**.

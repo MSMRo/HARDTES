@@ -1,7 +1,9 @@
 # Laboratorio 06: Creación y Consumo de APIs REST (HTTP)
 
 ## 1. Introducción y Objetivos
-Las APIs REST son el estándar de interoperabilidad web para comunicar dispositivos médicos con plataformas de gestión clínica, historias clínicas electrónicas (EHR) y servicios en la nube.
+Las APIs REST son el estándar de interoperabilidad web para comunicar sistemas clientes y servidores, como: dispositivos médicos con plataformas de gestión clínica, historias clínicas electrónicas (EHR) y servicios en la nube.
+
+![](./imgs/api_rest.png)
 
 En este laboratorio aprenderás a:
 - Transformar Node-RED en un **Servidor de API REST** capaz de exponer endpoints HTTP accesibles desde cualquier red o dispositivo (como un ESP32).
@@ -52,13 +54,7 @@ En este laboratorio aprenderás a:
 
 ## 4. Arquitectura del Flujo
 
-```
- [ HTTP In: POST /api/paciente/vitales ] ---> [ Function: Validar & Guardar ] ---> [ HTTP Response: 201 ]
-                                                        |
-                                                        v (Guarda en flow.context)
-                                                        ^
- [ HTTP In: GET /api/paciente/vitales ] ----> [ Function: Leer Último ] ---------> [ HTTP Response: 200 ]
-```
+![](./imgs/Gemini_Generated_Image_h2zexph2zexph2ze.jpg)
 
 ---
 
@@ -68,21 +64,30 @@ Una vez desplegado el flujo en Node-RED, puedes probar los endpoints desde tu te
 
 ### Probar POST (Registro):
 ```bash
-curl -X POST http://localhost:1880/api/paciente/vitales \
+$ curl -X POST http://localhost:1880/api/paciente/vitales \
   -H "Content-Type: application/json" \
   -d "{\"paciente_id\":\"PAC-101\",\"bpm\":78,\"spo2\":99,\"temp\":36.5}"
 ```
 
+```bash
+$ curl -X POST http://localhost:1880/api/paciente/vitales -H "Content-Type: application/json" -d "{\"paciente_id\":\"PAC-101\",\"bpm\":78,\"spo2\":99,\"temp\":36.5}"
+```
+
 ### Probar GET (Consulta):
 ```bash
-curl -X GET http://localhost:1880/api/paciente/vitales
+$ curl -X GET http://localhost:1880/api/paciente/vitales
 ```
 O simplemente abriendo en tu navegador la URL:
 `http://localhost:1880/api/paciente/vitales`
 
+### En Postman
+
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20102818.png)
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20102854.png)
+
 ---
 
 ## 6. Cómo Importar el Flujo
-1. Copia el archivo [`flow.json`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/4_NODE-RED/06-http-rest-api/flow.json).
+1. Copia el archivo [`flow.json`](./HARDTES/4_NODE-RED/06-http-rest-api/flow.json).
 2. En Node-RED: `☰` > **Import** > Pegar > **Import** > **Deploy**.
 3. Realiza las pruebas con cURL, navegador o los nodos de inyección de prueba incluidos en el flujo.

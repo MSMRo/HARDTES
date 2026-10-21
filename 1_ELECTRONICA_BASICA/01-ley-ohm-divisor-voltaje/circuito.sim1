@@ -1,0 +1,23 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Rail." CircId="Rail-1" mainComp="false" Show_id="true" Show_Val="true" Pos="-120,-160" rotation="0" hflip="1" vflip="1" label="VCC" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
+
+<item itemtype="Resistor" CircId="Resistor-1" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-120,-100" rotation="90" hflip="1" vflip="1" label="R1 (Sensor)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+
+<item itemtype="Resistor" CircId="Resistor-2" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-120,-20" rotation="90" hflip="1" vflip="1" label="R2 (Ref)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+
+<item itemtype="Ground" CircId="Ground-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-120,40" rotation="0" hflip="1" vflip="1" label="GND" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Probe" CircId="Probe-Vout" mainComp="false" Show_id="true" Show_Val="true" Pos="-40,-60" rotation="0" hflip="1" vflip="1" label="Vout (Hacia ADC)" idLabPos="16,-16" labelrot="0" valLabPos="16,10" valLabRot="0" ShowVolt="true" Threshold="2.5 V" />
+
+<item itemtype="Node" CircId="Node-Mid" mainComp="false" Pos="-120,-60" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-200" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f0f9ff" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#0369a1" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 01: Ley de Ohm y Divisor de Voltaje&#xa;&#xa; Vin = 5.0 V&#xa; R1 = 10 kΩ, R2 = 10 kΩ&#xa; Vout = Vin * (R2 / (R1 + R2)) = 2.50 V&#xa; I = Vin / (R1 + R2) = 0.25 mA" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Rail-1-outpin" endpinid="Resistor-1-lPin" pointList="-120,-160,-120,-116" />
+<item itemtype="Connector" uid="Connector-2" startpinid="Resistor-1-rPin" endpinid="Node-Mid-1" pointList="-120,-84,-120,-60" />
+<item itemtype="Connector" uid="Connector-3" startpinid="Node-Mid-2" endpinid="Resistor-2-lPin" pointList="-120,-60,-120,-36" />
+<item itemtype="Connector" uid="Connector-4" startpinid="Resistor-2-rPin" endpinid="Ground-1-Gnd" pointList="-120,-4,-120,40" />
+<item itemtype="Connector" uid="Connector-5" startpinid="Node-Mid-0" endpinid="Probe-Vout-inpin" pointList="-120,-60,-56,-60" />
+
+</circuit>

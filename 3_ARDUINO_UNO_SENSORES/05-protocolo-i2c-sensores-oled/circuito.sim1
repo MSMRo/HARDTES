@@ -1,0 +1,22 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (I2C Master)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Rail." CircId="Rail-5V" mainComp="false" Show_id="true" Show_Val="true" Pos="-40,-200" rotation="0" hflip="1" vflip="1" label="VCC (5V)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
+
+<item itemtype="Resistor" CircId="Resistor-PullSDA" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-60,-140" rotation="90" hflip="1" vflip="1" label="Pull-Up SDA" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="4.7 kΩ" />
+
+<item itemtype="Resistor" CircId="Resistor-PullSCL" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-20,-140" rotation="90" hflip="1" vflip="1" label="Pull-Up SCL" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="4.7 kΩ" />
+
+<item itemtype="Oscope" CircId="Oscope-I2C" mainComp="false" Show_id="true" Show_Val="false" Pos="160,-140" rotation="0" hflip="1" vflip="1" label="Osciloscopio I2C" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="100000" TimPos="0,0,0,0," VolDiv="2,2,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="2" HideCh="false,false,true,true," VolPos="0,0,0,0," />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f0fdf4" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#15803d" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 05 (Sensores): Protocolo Hardware I2C / TWI&#xa;&#xa; Pines: A4 (SDA) y A5 (SCL) con Pull-Ups de 4.7 kΩ&#xa; Canal 1 (Osciloscopio): SCL (Reloj sincrónico)&#xa; Canal 2 (Osciloscopio): SDA (Datos bidireccionales)" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Rail-5V-outpin" endpinid="Resistor-PullSDA-lPin" pointList="-40,-200,-60,-200,-60,-156" />
+<item itemtype="Connector" uid="Connector-2" startpinid="Rail-5V-outpin" endpinid="Resistor-PullSCL-lPin" pointList="-40,-200,-20,-200,-20,-156" />
+<item itemtype="Connector" uid="Connector-3" startpinid="Arduino-1-A4" endpinid="Resistor-PullSDA-rPin" pointList="-130,-4,-60,-4,-60,-124" />
+<item itemtype="Connector" uid="Connector-4" startpinid="Arduino-1-A5" endpinid="Resistor-PullSCL-rPin" pointList="-130,8,-20,8,-20,-124" />
+<item itemtype="Connector" uid="Connector-5" startpinid="Arduino-1-A5" endpinid="Oscope-I2C-Pin0" pointList="-130,8,-20,8,60,8,60,-140,100,-140" />
+<item itemtype="Connector" uid="Connector-6" startpinid="Arduino-1-A4" endpinid="Oscope-I2C-Pin1" pointList="-130,-4,-60,-4,80,-4,80,-120,100,-120" />
+
+</circuit>

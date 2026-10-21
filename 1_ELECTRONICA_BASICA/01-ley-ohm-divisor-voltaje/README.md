@@ -25,18 +25,8 @@ $$I = \frac{V_{in}}{R_1 + R_2}$$
 
 La tensión de salida tomada sobre $R_2$ es:
 $$V_{out} = I \cdot R_2 = V_{in} \cdot \left( \frac{R_2}{R_1 + R_2} \right)$$
-
-```
-          + Vin (5V)
-            |
-           [R1] (Sensor resistivo, ej. Termistor)
-            |
-            +-----> Vout (Hacia ADC de Arduino / ESP32)
-            |
-           [R2] (Resistencia fija de referencia)
-            |
-           GND (0V)
-```
+ 
+![](./imgs/image.png)
 
 #### Ejemplo Numérico:
 - $V_{in} = 5.0\text{ V}$
@@ -61,7 +51,7 @@ El archivo contiene:
 ## 4. Instrucciones para Simular en SimulIDE
 
 1. Abre el software **SimulIDE** (versión 1.0.0 o 1.1.0).
-2. Haz clic en **File > Open** (o pulsa `Ctrl + O`) y selecciona el archivo [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/1_ELECTRONICA_BASICA/01-ley-ohm-divisor-voltaje/circuito.sim1).
+2. Haz clic en **File > Open** (o pulsa `Ctrl + O`) y selecciona el archivo [`circuito.sim1`](./HARDTES/1_ELECTRONICA_BASICA/01-ley-ohm-divisor-voltaje/circuito.sim1).
 3. Presiona el botón **Power Circuit** (icono de botón rojo de encendido en la barra superior).
 4. Observa el valor medido por la sonda: debe indicar exactamente `2.5 V`.
 5. Haz clic derecho sobre $R_2$, selecciona **Properties** y modifica su resistencia a $20\text{ k}\Omega$:

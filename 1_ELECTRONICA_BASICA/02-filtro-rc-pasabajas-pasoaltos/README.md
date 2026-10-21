@@ -16,26 +16,13 @@ Durante la adquisición mediante electrodos sobre la piel, se acoplan fuentes ma
 
 ### A. Filtro Pasa-Bajas RC (Low-Pass Filter)
 Deja pasar las frecuencias por debajo de la frecuencia de corte ($f_c$) y atenúa las superiores:
-```
-         R (1.5 kΩ)
-  Vin >---/\/\/\/---+---> Vout
-                    |
-                   --- C (1 µF)
-                   ---
-                    |
-                   GND
-```
+
+![](./imgs/image.png)
 
 ### B. Filtro Pasa-Altas RC (High-Pass Filter)
 Bloquea la componente continua (DC) y las frecuencias por debajo de $f_c$:
-```
-          C (1 µF)
-  Vin >-----||------+---> Vout
-                    |
-                   [ ] R (1.5 kΩ)
-                    |
-                   GND
-```
+
+![](./imgs/Captura%20de%20pantalla%202026-10-21%20132426.png)
 
 ### C. Ecuación de la Frecuencia de Corte ($f_c$)
 Es la frecuencia a la cual la potencia cae a la mitad ($-3\text{ dB}$, ganancia $A_v = \frac{1}{\sqrt{2}} \approx 0.707$):
@@ -61,7 +48,7 @@ Atenúa efectivamente ruidos de alta frecuencia mientras preserva el complejo QR
 
 ## 4. Procedimiento de Simulación en SimulIDE
 
-1. Abre SimulIDE y carga [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/1_ELECTRONICA_BASICA/02-filtro-rc-pasabajas-pasoaltos/circuito.sim1).
+1. Abre SimulIDE y carga [`circuito.sim1`](./HARDTES/1_ELECTRONICA_BASICA/02-filtro-rc-pasabajas-pasoaltos/circuito.sim1).
 2. Enciende el circuito (**Power Circuit**).
 3. Abre la ventana del **Osciloscopio**:
    - Con una frecuencia de entrada baja ($10\text{ Hz}$), observa cómo la señal de salida $V_{out}$ pasa casi intacta (amplitud cercana a $1\text{ V}$).

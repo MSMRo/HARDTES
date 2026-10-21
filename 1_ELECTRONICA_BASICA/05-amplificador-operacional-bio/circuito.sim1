@@ -1,0 +1,33 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="WaveGen" CircId="WaveGen-Bio" mainComp="false" Show_id="true" Show_Val="true" Pos="-240,-100" rotation="0" hflip="1" vflip="1" label="Vin (ECG 100mVp)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" WaveType="Sine" Freq="10 Hz" Volt="0.1 V" Offset="0 V" Duty="50 %" />
+
+<item itemtype="opAmp" CircId="opAmp-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-40,-120" rotation="0" hflip="1" vflip="1" label="OpAmp LM358" idLabPos="-16,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Gain="100000" Out_Imped="1e-14 Ω" Power_Pins="false" Switch_Pins="false" Volt_Pos="12 V" Volt_Neg="-12 V" />
+
+<item itemtype="Resistor" CircId="Resistor-R1" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-100,-60" rotation="90" hflip="1" vflip="1" label="R1 (1k)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1 kΩ" />
+
+<item itemtype="Resistor" CircId="Resistor-Rf" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-30,-180" rotation="0" hflip="1" vflip="1" label="Rf (9k)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="9 kΩ" />
+
+<item itemtype="Ground" CircId="Ground-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-100,20" rotation="0" hflip="1" vflip="1" label="GND-1" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Ground" CircId="Ground-Gen" mainComp="false" Show_id="false" Show_Val="false" Pos="-240,-40" rotation="0" hflip="1" vflip="1" label="GND-Gen" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Oscope" CircId="Oscope-Bio" mainComp="false" Show_id="true" Show_Val="false" Pos="180,-120" rotation="0" hflip="1" vflip="1" label="Osciloscopio" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="20000000" TimPos="0,0,0,0," VolDiv="0.2,1,1,1," Tunnels=",,,," Trigger="0" Filter="0.01 V" AutoSC="4" Tracks="2" HideCh="false,false,true,true," VolPos="0,0,0,0," />
+
+<item itemtype="Node" CircId="Node-Inv" mainComp="false" Pos="-80,-128" />
+<item itemtype="Node" CircId="Node-Out" mainComp="false" Pos="20,-120" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f0fdf4" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#15803d" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 05: Amplificador No Inversor para Biopotenciales&#xa;&#xa; Av = 1 + (Rf / R1) = 1 + (9k / 1k) = 10&#xa; Vin = 100 mVpico -> Vout = 1.0 Vpico&#xa; Alta impedancia de entrada (ideal para electrodos)" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="WaveGen-Bio-outpin" endpinid="opAmp-1-inputNinv" pointList="-224,-100,-64,-100,-64,-112" />
+<item itemtype="Connector" uid="Connector-2" startpinid="WaveGen-Bio-Gnd" endpinid="Ground-Gen-Gnd" pointList="-240,-84,-240,-40" />
+<item itemtype="Connector" uid="Connector-3" startpinid="opAmp-1-inputInv" endpinid="Node-Inv-1" pointList="-64,-128,-80,-128" />
+<item itemtype="Connector" uid="Connector-4" startpinid="Node-Inv-2" endpinid="Resistor-R1-lPin" pointList="-80,-128,-100,-128,-100,-76" />
+<item itemtype="Connector" uid="Connector-5" startpinid="Resistor-R1-rPin" endpinid="Ground-1-Gnd" pointList="-100,-44,-100,20" />
+<item itemtype="Connector" uid="Connector-6" startpinid="Node-Inv-0" endpinid="Resistor-Rf-lPin" pointList="-80,-128,-80,-180,-46,-180" />
+<item itemtype="Connector" uid="Connector-7" startpinid="Resistor-Rf-rPin" endpinid="Node-Out-1" pointList="-14,-180,20,-180,20,-120" />
+<item itemtype="Connector" uid="Connector-8" startpinid="opAmp-1-output" endpinid="Node-Out-2" pointList="-16,-120,20,-120" />
+<item itemtype="Connector" uid="Connector-9" startpinid="WaveGen-Bio-outpin" endpinid="Oscope-Bio-Pin0" pointList="-224,-100,-224,-200,100,-200,100,-120" />
+<item itemtype="Connector" uid="Connector-10" startpinid="Node-Out-0" endpinid="Oscope-Bio-Pin1" pointList="20,-120,60,-120,60,-140,120,-140,120,-120" />
+
+</circuit>

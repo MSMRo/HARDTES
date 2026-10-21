@@ -1,0 +1,12 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (Serial UART)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="SerialPort" CircId="SerialTerm-1" mainComp="false" Show_id="true" Show_Val="false" Pos="100,-140" rotation="0" hflip="1" vflip="1" label="Terminal Serie" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" BaudRate="115200" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fdf2f8" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#9d174d" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 03 (C++): Comunicación Serial UART y Servidor de Comandos&#xa;&#xa; Abre el Monitor Serie integrado en SimulIDE o Arduino IDE a 115200 baudios&#xa; Envia: GET_VITALS, GET_STATUS, ALARM_ON, ALARM_OFF, HELP" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Arduino-1-D1" endpinid="SerialTerm-1-rxPin" pointList="20,-116,80,-116" />
+<item itemtype="Connector" uid="Connector-2" startpinid="SerialTerm-1-txPin" endpinid="Arduino-1-D0" pointList="80,-104,20,-104" />
+
+</circuit>

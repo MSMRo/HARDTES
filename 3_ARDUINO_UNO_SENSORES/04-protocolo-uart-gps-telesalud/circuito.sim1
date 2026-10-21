@@ -1,0 +1,11 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (UART GPS)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="SerialPort" CircId="Serial-GPS" mainComp="false" Show_id="true" Show_Val="false" Pos="-260,-40" rotation="0" hflip="1" vflip="1" label="Módulo GPS (9600)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" BaudRate="9600" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#ecfeff" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#0e7490" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 04 (Sensores): Protocolo UART y Módulo GPS NMEA&#xa;&#xa; Terminal Serial GPS conectado a D4 (RX) de Arduino&#xa; Pega una trama $GPRMC para simular coordenadas de ambulancia en Lima" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Serial-GPS-txPin" endpinid="Arduino-1-D4" pointList="-240,-40,-130,-40" />
+
+</circuit>

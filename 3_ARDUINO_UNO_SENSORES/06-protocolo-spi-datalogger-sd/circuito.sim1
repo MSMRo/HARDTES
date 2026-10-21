@@ -1,0 +1,12 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (SPI Master)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Oscope" CircId="Oscope-SPI" mainComp="false" Show_id="true" Show_Val="false" Pos="160,-140" rotation="0" hflip="1" vflip="1" label="Osciloscopio SPI" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="50000" TimPos="0,0,0,0," VolDiv="2,2,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="2" HideCh="false,false,true,true," VolPos="0,0,0,0," />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fefce8" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#a16207" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 06 (Sensores): Protocolo Hardware SPI (Data Logger MicroSD)&#xa;&#xa; Pines Hardware: MOSI=11, MISO=12, SCK=13, CS=10&#xa; Canal 1 (Osciloscopio): SCK (Reloj SPI hasta 8 MHz)&#xa; Canal 2 (Osciloscopio): MOSI (Trama de datos serial de alta velocidad)" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Arduino-1-D13" endpinid="Oscope-SPI-Pin0" pointList="20,-140,80,-140,80,-140,100,-140" />
+<item itemtype="Connector" uid="Connector-2" startpinid="Arduino-1-D11" endpinid="Oscope-SPI-Pin1" pointList="20,-116,60,-116,60,-120,100,-120" />
+
+</circuit>

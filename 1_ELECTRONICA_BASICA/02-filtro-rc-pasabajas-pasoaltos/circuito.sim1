@@ -1,6 +1,6 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="WaveGen" CircId="WaveGen-1" mainComp="false" Show_id="true" Show_Val="true" Pos="-220,-100" rotation="0" hflip="1" vflip="1" label="Vin (ECG + Ruido)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" WaveType="Sine" Freq="50 Hz" Volt="2 V" Offset="0 V" Duty="50 %" />
+<item itemtype="WaveGen" CircId="WaveGen-1" mainComp="false" Show_id="true" Show_Val="true" Pos="-220,-100" rotation="0" hflip="1" vflip="1" label="Vin (ECG + Ruido)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Out="true" Running="true" Wave_Type="Sine" Freq="50 Hz" Phase="0 _º" Steps="100 _Steps" Duty="50 %" Always_On="false" Bipolar="false" Floating="false" Semi_Ampli="2.5 V" Mid_Volt="0 V" />
 
 <item itemtype="Resistor" CircId="Resistor-1" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-100,-100" rotation="0" hflip="1" vflip="1" label="R" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1.5 kΩ" />
 
@@ -8,22 +8,26 @@
 
 <item itemtype="Ground" CircId="Ground-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-20,40" rotation="0" hflip="1" vflip="1" label="Ground-1" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Ground" CircId="Ground-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-220,-40" rotation="0" hflip="1" vflip="1" label="Ground-2" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="Oscope" CircId="Oscope-1" mainComp="false" Show_id="true" Show_Val="false" Pos="160,-120" rotation="0" hflip="1" vflip="1" label="Osciloscopio" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="8818628307" TimPos="0,0,0,0," VolDiv="1,1,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="2" HideCh="false,false,true,true," VolPos="0,0,0,0," />
 
-<item itemtype="Oscope" CircId="Oscope-1" mainComp="false" Show_id="true" Show_Val="false" Pos="160,-120" rotation="0" hflip="1" vflip="1" label="Osciloscopio" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="5000000" TimPos="0,0,0,0," VolDiv="1,1,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="2" HideCh="false,false,true,true," VolPos="0,0,0,0," />
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-356,-292" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fdf4ff" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#86198f" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 02: Filtro Pasa-Bajas RC para Bio-Señales&#xa;&#xa; fc &#x3D 1 / (2 * pi * R * C)&#xa; R &#x3D 1.5 kΩ, C &#x3D 1 µF -&#x3E fc ≈ 106.1 Hz&#xa; Ch1 (Vin): Entrada antes de filtrar&#xa; Ch2 (Vout): Señal biológica filtrada" />
 
 <item itemtype="Node" CircId="Node-Vin" mainComp="false" Pos="-140,-100" />
+
 <item itemtype="Node" CircId="Node-Vout" mainComp="false" Pos="-20,-100" />
 
-<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-220" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fdf4ff" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#86198f" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 02: Filtro Pasa-Bajas RC para Bio-Señales&#xa;&#xa; fc = 1 / (2 * pi * R * C)&#xa; R = 1.5 kΩ, C = 1 µF -> fc ≈ 106.1 Hz&#xa; Ch1 (Vin): Entrada antes de filtrar&#xa; Ch2 (Vout): Señal biológica filtrada" />
+<item itemtype="Connector" uid="Connector-1" startpinid="WaveGen-1-outnod" endpinid="Node-Vin-1" pointList="-204,-100,-140,-100" />
 
-<item itemtype="Connector" uid="Connector-1" startpinid="WaveGen-1-outpin" endpinid="Node-Vin-1" pointList="-204,-100,-140,-100" />
 <item itemtype="Connector" uid="Connector-2" startpinid="Node-Vin-2" endpinid="Resistor-1-lPin" pointList="-140,-100,-116,-100" />
+
 <item itemtype="Connector" uid="Connector-3" startpinid="Resistor-1-rPin" endpinid="Node-Vout-1" pointList="-84,-100,-20,-100" />
+
 <item itemtype="Connector" uid="Connector-4" startpinid="Node-Vout-2" endpinid="Capacitor-1-lPin" pointList="-20,-100,-20,-56" />
-<item itemtype="Connector" uid="Connector-5" startpinid="Capacitor-1-rPin" endpinid="Ground-1-Gnd" pointList="-20,-24,-20,40" />
-<item itemtype="Connector" uid="Connector-6" startpinid="WaveGen-1-Gnd" endpinid="Ground-2-Gnd" pointList="-220,-84,-220,-40" />
-<item itemtype="Connector" uid="Connector-7" startpinid="Node-Vin-0" endpinid="Oscope-1-Pin0" pointList="-140,-100,-140,-160,80,-160,80,-120" />
-<item itemtype="Connector" uid="Connector-8" startpinid="Node-Vout-0" endpinid="Oscope-1-Pin1" pointList="-20,-100,-20,-140,100,-140,100,-120" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Capacitor-1-rPin" endpinid="Ground-1-Gnd" pointList="-20,-24,-20,24" />
+
+<item itemtype="Connector" uid="Connector-7" startpinid="Node-Vin-0" endpinid="Oscope-1-Pin0" pointList="-140,-100,-140,-160,72,-160,72,-168" />
+
+<item itemtype="Connector" uid="Connector-8" startpinid="Node-Vout-0" endpinid="Oscope-1-Pin1" pointList="-20,-100,-20,-140,72,-140,72,-136" />
 
 </circuit>

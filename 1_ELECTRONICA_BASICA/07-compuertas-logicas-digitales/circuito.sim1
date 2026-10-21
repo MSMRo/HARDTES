@@ -1,0 +1,53 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Rail." CircId="Rail-Vcc" mainComp="false" Show_id="true" Show_Val="true" Pos="-260,-220" rotation="0" hflip="1" vflip="1" label="VCC (5V)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
+
+<item itemtype="Switch" CircId="Switch-A" mainComp="false" Show_id="true" Show_Val="false" Pos="-200,-160" rotation="0" hflip="1" vflip="1" label="A: Contacto Palas" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Switch" CircId="Switch-B" mainComp="false" Show_id="true" Show_Val="false" Pos="-200,-100" rotation="0" hflip="1" vflip="1" label="B: Gatillo Médico" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Switch" CircId="Switch-C" mainComp="false" Show_id="true" Show_Val="false" Pos="-200,-40" rotation="0" hflip="1" vflip="1" label="C: Ritmo No Choqueable" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Resistor" CircId="Resistor-PullA" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="false" Pos="-140,-130" rotation="90" hflip="1" vflip="1" label="R_PA" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+<item itemtype="Resistor" CircId="Resistor-PullB" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="false" Pos="-140,-70" rotation="90" hflip="1" vflip="1" label="R_PB" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+<item itemtype="Resistor" CircId="Resistor-PullC" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="false" Pos="-140,-10" rotation="90" hflip="1" vflip="1" label="R_PC" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+
+<item itemtype="Ground" CircId="Ground-Pulls" mainComp="false" Show_id="false" Show_Val="false" Pos="-140,50" rotation="0" hflip="1" vflip="1" label="GND-Pulls" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="And Gate" CircId="And-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-40,-130" rotation="0" hflip="1" vflip="1" label="AND-1 (A y B)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Not Gate" CircId="Not-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-60,-40" rotation="0" hflip="1" vflip="1" label="NOT-1 (No C)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="And Gate" CircId="And-2" mainComp="false" Show_id="true" Show_Val="false" Pos="60,-90" rotation="0" hflip="1" vflip="1" label="AND-2 (Interlock)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="false" Pos="140,-90" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
+
+<item itemtype="Led" CircId="Led-Disparo" mainComp="false" Show_id="true" Show_Val="false" Pos="210,-90" rotation="0" hflip="1" vflip="1" label="DESCARGA AUTORIZADA" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" />
+
+<item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="250,-50" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-260" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f8fafc" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#334155" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 07: Interbloqueo Lógico de Seguridad para Desfibrilador&#xa;&#xa; DISPARO = A (Contacto) AND B (Pulsador) AND NOT C (Asistolia)&#xa; La salida a 5V activa la etapa de descarga médica." />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Rail-Vcc-outpin" endpinid="Switch-A-lPin" pointList="-260,-220,-260,-160,-216,-160" />
+<item itemtype="Connector" uid="Connector-2" startpinid="Rail-Vcc-outpin" endpinid="Switch-B-lPin" pointList="-260,-220,-260,-100,-216,-100" />
+<item itemtype="Connector" uid="Connector-3" startpinid="Rail-Vcc-outpin" endpinid="Switch-C-lPin" pointList="-260,-220,-260,-40,-216,-40" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="Switch-A-rPin" endpinid="And-1-in0" pointList="-184,-160,-140,-160,-140,-146,-56,-146" />
+<item itemtype="Connector" uid="Connector-5" startpinid="Switch-A-rPin" endpinid="Resistor-PullA-lPin" pointList="-184,-160,-140,-160,-140,-146" />
+<item itemtype="Connector" uid="Connector-6" startpinid="Resistor-PullA-rPin" endpinid="Ground-Pulls-Gnd" pointList="-140,-114,-140,50" />
+
+<item itemtype="Connector" uid="Connector-7" startpinid="Switch-B-rPin" endpinid="And-1-in1" pointList="-184,-100,-140,-100,-140,-114,-56,-114" />
+<item itemtype="Connector" uid="Connector-8" startpinid="Switch-B-rPin" endpinid="Resistor-PullB-lPin" pointList="-184,-100,-140,-100,-140,-86" />
+<item itemtype="Connector" uid="Connector-9" startpinid="Resistor-PullB-rPin" endpinid="Ground-Pulls-Gnd" pointList="-140,-54,-140,50" />
+
+<item itemtype="Connector" uid="Connector-10" startpinid="Switch-C-rPin" endpinid="Not-1-in0" pointList="-184,-40,-76,-40" />
+<item itemtype="Connector" uid="Connector-11" startpinid="Switch-C-rPin" endpinid="Resistor-PullC-lPin" pointList="-184,-40,-140,-40,-140,-26" />
+<item itemtype="Connector" uid="Connector-12" startpinid="Resistor-PullC-rPin" endpinid="Ground-Pulls-Gnd" pointList="-140,6,-140,50" />
+
+<item itemtype="Connector" uid="Connector-13" startpinid="And-1-out" endpinid="And-2-in0" pointList="-24,-130,10,-130,10,-106,44,-106" />
+<item itemtype="Connector" uid="Connector-14" startpinid="Not-1-out" endpinid="And-2-in1" pointList="-44,-40,10,-40,10,-74,44,-74" />
+<item itemtype="Connector" uid="Connector-15" startpinid="And-2-out" endpinid="Resistor-Led-lPin" pointList="76,-90,124,-90" />
+<item itemtype="Connector" uid="Connector-16" startpinid="Resistor-Led-rPin" endpinid="Led-Disparo-anode" pointList="156,-90,194,-90" />
+<item itemtype="Connector" uid="Connector-17" startpinid="Led-Disparo-cathode" endpinid="Ground-Led-Gnd" pointList="226,-90,250,-90,250,-50" />
+
+</circuit>

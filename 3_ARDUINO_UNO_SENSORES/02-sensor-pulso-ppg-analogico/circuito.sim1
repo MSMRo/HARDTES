@@ -1,0 +1,23 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (PPG Pulse)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="WaveGen" CircId="WaveGen-PPG" mainComp="false" Show_id="true" Show_Val="true" Pos="-240,-40" rotation="0" hflip="1" vflip="1" label="Señal Óptica PPG" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" WaveType="Sine" Freq="1.2 Hz" Volt="1.5 V" Offset="2.5 V" Duty="50 %" />
+
+<item itemtype="Ground" CircId="Ground-Gen" mainComp="false" Show_id="false" Show_Val="false" Pos="-240,20" rotation="0" hflip="1" vflip="1" label="GND" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="80,-140" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
+
+<item itemtype="Led" CircId="Led-Heartbeat" mainComp="false" Show_id="true" Show_Val="false" Pos="150,-140" rotation="0" hflip="1" vflip="1" label="Latido Sístole" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" />
+
+<item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="190,-100" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fff1f2" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#9f1239" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 02 (Sensores): Sensor de Pulso PPG y Filtro DC-Removal&#xa;&#xa; Generador de 1.2 Hz (72 lpm) con offset de 2.5V conectado a A0&#xa; El firmware filtra la componente continua y enciende el LED D13 en cada sístole" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="WaveGen-PPG-outpin" endpinid="Arduino-1-A0" pointList="-224,-40,-130,-40" />
+<item itemtype="Connector" uid="Connector-2" startpinid="WaveGen-PPG-Gnd" endpinid="Ground-Gen-Gnd" pointList="-240,-24,-240,20" />
+<item itemtype="Connector" uid="Connector-3" startpinid="Arduino-1-D13" endpinid="Resistor-Led-lPin" pointList="20,-140,64,-140" />
+<item itemtype="Connector" uid="Connector-4" startpinid="Resistor-Led-rPin" endpinid="Led-Heartbeat-anode" pointList="96,-140,134,-140" />
+<item itemtype="Connector" uid="Connector-5" startpinid="Led-Heartbeat-cathode" endpinid="Ground-Led-Gnd" pointList="166,-140,190,-140,190,-100" />
+
+</circuit>

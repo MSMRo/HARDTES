@@ -1,4 +1,4 @@
-/*
+ /*
  * Laboratorio 04: Muestreo ADC de 10 bits y Conversión de Biosensor
  * Curso: Hardware para Telesalud
  * Universidad Peruana Cayetano Heredia (UPCH)

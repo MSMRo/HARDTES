@@ -101,5 +101,4 @@ Desde el firmware del microcontrolador hasta su enlace físico y telemático con
 - **Curso:** Hardware para Telesalud
 - **Institución:** Universidad Peruana Cayetano Heredia (UPCH)
 - **Facultad:** Ciencias e Ingeniería
-- **Carrera:** Ingeniería Biomédica
 - **Año Académico:** 2026

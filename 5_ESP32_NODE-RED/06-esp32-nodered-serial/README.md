@@ -16,17 +16,7 @@ En este proyecto aprenderás a:
 
 ## 2. Arquitectura de Interconexión
 
-```
- +-------------------------------------+                  +-----------------------------------+
- |             ESP32 SoC               |                  |             Node-RED              |
- |                                     |                  |          (PC / Raspberry Pi)      |
- |  [ Emisión ]                        |   Cable USB/UART |                                   |
- |  Telemetría JSON ---> UART TX (GPIO1)| ---------------> | [ Serial In ] ---> [ JSON Parser ]|
- |                                     |   (115200 baud)  |                           |       |
- |  [ Recepción ]                      |                  |                           v       |
- |  Comandos <---------- UART RX (GPIO3)| <--------------- | [ Serial Out ] <--- [ Dashboard ] |
- +-------------------------------------+                  +-----------------------------------+
-```
+
 
 ---
 

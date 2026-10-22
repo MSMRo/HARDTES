@@ -12,11 +12,6 @@ La solución es el modo **SoftAP** (*Software Access Point*). El ESP32 se compor
 
 ## 2. Topología de Red Ad-Hoc
 
-```
- [ Smartphone Médico ] \
-                         +--- (Wi-Fi: ESP32-UPCH-TeleSalud) ---> [ ESP32 SoftAP ]
- [ Laptop Estación ] ---/                                        IP: 192.168.4.1
-```
 
 ---
 
@@ -43,7 +38,7 @@ Simula un asistente de aprovisionamiento de red que envía credenciales de confi
 
 ## 6. Instrucciones de Carga y Prueba
 
-1. Sube [`firmware/wifi_softap.ino`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/5_ESP32_NODE-RED/03-esp32-wifi-access-point/firmware/wifi_softap.ino) a la placa ESP32.
+1. Sube [`firmware/wifi_softap.ino`](./5_ESP32_NODE-RED/03-esp32-wifi-access-point/firmware/wifi_softap.ino) a la placa ESP32.
 2. Abre el Monitor Serie a `115200 baudios`.
 3. Con tu smartphone o laptop, busca redes Wi-Fi disponibles.
 4. Conéctate a la red **`ESP32-UPCH-TeleSalud`** introduciendo la clave **`Biomedica2026`**.

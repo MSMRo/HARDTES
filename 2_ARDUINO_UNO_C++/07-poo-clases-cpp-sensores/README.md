@@ -51,6 +51,6 @@ public:
 ---
 
 ## 5. Simulación en SimulIDE
-1. Abre [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/2_ARDUINO_UNO_C%2B%2B/07-poo-clases-cpp-sensores/circuito.sim1) en SimulIDE.
+1. Abre [`circuito.sim1`](./2_ARDUINO_UNO_C%2B%2B/07-poo-clases-cpp-sensores/circuito.sim1) en SimulIDE.
 2. Carga el firmware compilado y enciende el circuito.
 3. Observa en el Monitor Serie cómo el objeto C++ gestiona de forma autónoma el filtrado, cálculo de frecuencia cardíaca y emisión de paquetes JSON de telemetría.

@@ -1,23 +1,29 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (ATmega328P)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="Push" CircId="Button-Alarm" mainComp="false" Show_id="true" Show_Val="false" Pos="-36,76" rotation="0" hflip="1" vflip="1" label="Pulsador Alarma (D2)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
 
-<item itemtype="Push" CircId="Button-Alarm" mainComp="false" Show_id="true" Show_Val="false" Pos="-200,-40" rotation="0" hflip="1" vflip="1" label="Pulsador Alarma (D2)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="Ground" CircId="Ground-Btn" mainComp="false" Show_id="false" Show_Val="false" Pos="-76,76" rotation="0" hflip="1" vflip="1" label="GND-Btn" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Ground" CircId="Ground-Btn" mainComp="false" Show_id="false" Show_Val="false" Pos="-240,-40" rotation="0" hflip="1" vflip="1" label="GND-Btn" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="108,-140" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
 
-<item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="80,-140" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
+<item itemtype="Led" CircId="Led-D13" mainComp="false" Show_id="true" Show_Val="false" Pos="178,-140" rotation="0" hflip="1" vflip="1" label="LED D13 (PB5)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
 
-<item itemtype="Led" CircId="Led-D13" mainComp="false" Show_id="true" Show_Val="false" Pos="150,-140" rotation="0" hflip="1" vflip="1" label="LED D13 (PB5)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" />
+<item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="218,-100" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="190,-100" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-48,-340" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f8fafc" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#0f172a" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 01 (C++): Pinout Arduino y Registros AVR Directos&#xa;&#xa; D13 (PB5) -&#x3E DDRB |&#x3D (1 &#x3C&#x3C DDB5) (Salida en 1 ciclo de reloj)&#xa; D2 (PD2)  -&#x3E DDRD &&#x3D ~(1 &#x3C&#x3C DDD2) y PORTD |&#x3D (1 &#x3C&#x3C PORTD2) (Pull-Up)&#xa; Clic derecho en Arduino &#x3E 'Load Firmware' para cargar el .hex" />
 
-<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f8fafc" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#0f172a" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 01 (C++): Pinout Arduino y Registros AVR Directos&#xa;&#xa; D13 (PB5) -> DDRB |= (1 << DDB5) (Salida en 1 ciclo de reloj)&#xa; D2 (PD2)  -> DDRD &= ~(1 << DDD2) y PORTD |= (1 << PORTD2) (Pull-Up)&#xa; Clic derecho en Arduino > 'Load Firmware' para cargar el .hex" />
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="44,-12" rotation="0" hflip="-1" vflip="-1" label="Uno-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Program="gpio_registers.hex" Auto_Load="false" saveEepr="true" MainMcu="true" SerialMon="1" />
+</item>
 
-<item itemtype="Connector" uid="Connector-1" startpinid="Ground-Btn-Gnd" endpinid="Button-Alarm-lPin" pointList="-240,-40,-216,-40" />
-<item itemtype="Connector" uid="Connector-2" startpinid="Button-Alarm-rPin" endpinid="Arduino-1-D2" pointList="-184,-40,-130,-40" />
-<item itemtype="Connector" uid="Connector-3" startpinid="Arduino-1-D13" endpinid="Resistor-Led-lPin" pointList="20,-140,64,-140" />
-<item itemtype="Connector" uid="Connector-4" startpinid="Resistor-Led-rPin" endpinid="Led-D13-anode" pointList="96,-140,134,-140" />
-<item itemtype="Connector" uid="Connector-5" startpinid="Led-D13-cathode" endpinid="Ground-Led-Gnd" pointList="166,-140,190,-140,190,-100" />
+<item itemtype="Connector" uid="Connector-1" startpinid="Ground-Btn-Gnd" endpinid="Button-Alarm-pinP0" pointList="-76,60,-52,60,-52,76" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="Resistor-Led-rPin" endpinid="Led-D13-lPin" pointList="124,-140,164,-140" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Led-D13-rPin" endpinid="Ground-Led-Gnd" pointList="194,-140,220,-140,220,-116" />
+
+<item itemtype="Connector" uid="Connector-7" startpinid="Resistor-Led-lPin" endpinid="Uno-1-13" pointList="92,-140,36,-140" />
+
+<item itemtype="Connector" uid="Connector-8" startpinid="Button-Alarm-switch0pinN" endpinid="Uno-1-2" pointList="-20,76,52,76,52,-44,36,-44" />
 
 </circuit>

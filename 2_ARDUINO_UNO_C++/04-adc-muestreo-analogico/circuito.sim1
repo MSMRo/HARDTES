@@ -1,23 +1,15 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (ADC A0)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
-
-<item itemtype="Potentiometer" CircId="Pot-Sensor" mainComp="false" Show_id="true" Show_Val="true" Pos="-220,-40" rotation="0" hflip="1" vflip="1" label="Sensor Temp (A0)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Resistance="10 kΩ" Pos_pct="50" />
-
-<item itemtype="Rail." CircId="Rail-5V" mainComp="false" Show_id="true" Show_Val="true" Pos="-260,-80" rotation="0" hflip="1" vflip="1" label="5V" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
+<item itemtype="Potentiometer" CircId="Pot-Sensor" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-220,-40" rotation="0" hflip="1" vflip="1" label="Sensor Temp (A0)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Resistance="10 kΩ" Value_Ohm="0 Ω" Slider="false" Scale="1" />
 
 <item itemtype="Ground" CircId="Ground-Pot" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,0" rotation="0" hflip="1" vflip="1" label="GND" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Voltmeter" CircId="Voltmeter-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-160,40" rotation="0" hflip="1" vflip="1" label="Voltímetro A0" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
-
 <item itemtype="Ground" CircId="Ground-Volt" mainComp="false" Show_id="false" Show_Val="false" Pos="-160,80" rotation="0" hflip="1" vflip="1" label="GND-Volt" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fffbeb" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#b45309" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 04 (C++): ADC de 10 bits y Calibración de Biosensor&#xa;&#xa; Potenciómetro simula sensor analógico en A0&#xa; Mapeo: 0 a 1023 -> 0.00 V a 5.00 V&#xa; Gira el potenciómetro en SimulIDE para ver la variación en el Monitor Serial" />
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fffbeb" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#b45309" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 04 (C++): ADC de 10 bits y Calibración de Biosensor&#xa;&#xa; Potenciómetro simula sensor analógico en A0&#xa; Mapeo: 0 a 1023 -&#x3E 0.00 V a 5.00 V&#xa; Gira el potenciómetro en SimulIDE para ver la variación en el Monitor Serial" />
 
-<item itemtype="Connector" uid="Connector-1" startpinid="Rail-5V-outpin" endpinid="Pot-Sensor-Pin0" pointList="-260,-80,-260,-52,-236,-52" />
-<item itemtype="Connector" uid="Connector-2" startpinid="Ground-Pot-Gnd" endpinid="Pot-Sensor-Pin2" pointList="-260,0,-260,-28,-236,-28" />
-<item itemtype="Connector" uid="Connector-3" startpinid="Pot-Sensor-Pin1" endpinid="Arduino-1-A0" pointList="-204,-40,-130,-40" />
-<item itemtype="Connector" uid="Connector-4" startpinid="Pot-Sensor-Pin1" endpinid="Voltmeter-1-inpos" pointList="-204,-40,-160,-40,-160,24" />
-<item itemtype="Connector" uid="Connector-5" startpinid="Voltmeter-1-inneg" endpinid="Ground-Volt-Gnd" pointList="-160,56,-160,80" />
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-116,-116" rotation="0" hflip="1" vflip="1" label="Uno-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Auto_Load="false" saveEepr="true" MainMcu="true" SerialMon="-1" />
+</item>
 
 </circuit>

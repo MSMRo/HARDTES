@@ -13,23 +13,7 @@ En este proyecto aprenderás a:
 
 ## 2. Arquitectura de Navegación
 
-```
- [ Smartphone o PC ] 
-        |
-   (Conectado a Wi-Fi: ESP32-Monitor-Web)
-        |
-   (Abre http://192.168.4.1)
-        v
- +---------------------------------------------------------------+
- |  🏥 MONITOR CLÍNICO DE CAMPO — UPCH TELESALUD                 |
- +---------------------------------------------------------------+
- |  Frecuencia Cardíaca: 76 lpm                                  |
- |  Saturación SpO2:    98 %                                     |
- |  Temperatura:        36.8 °C                                  |
- +---------------------------------------------------------------+
- |  [ ACTIVAR ALARMA LUMINOSA ]    [ SILENCIAR ALARMA ]          |
- +---------------------------------------------------------------+
-```
+
 
 ---
 

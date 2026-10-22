@@ -47,7 +47,7 @@ Realiza la adquisición con sobremuestreo, resuelve la ecuación matemática en 
 ---
 
 ## 5. Simulación en SimulIDE
-1. Abre [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/3_ARDUINO_UNO_SENSORES/01-sensor-ntc-steinhart-hart/circuito.sim1) en SimulIDE.
+1. Abre [`circuito.sim1`](./3_ARDUINO_UNO_SENSORES/01-sensor-ntc-steinhart-hart/circuito.sim1) en SimulIDE.
 2. Carga el firmware compilado y enciende el circuito.
 3. Modifica la temperatura del componente termistor en SimulIDE (o desliza el potenciómetro equivalente).
 4. Verifica en el Monitor Serie cómo el logaritmo natural resuelve la no linealidad del sensor, entregando lecturas precisas de temperatura clínica en tiempo real.

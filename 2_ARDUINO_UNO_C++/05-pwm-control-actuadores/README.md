@@ -19,17 +19,7 @@ $$D = \frac{T_{ON}}{T} \cdot 100\%$$
 El voltaje medio o efectivo entregado a la carga es:
 $$V_{promedio} = V_{CC} \cdot \frac{D}{100\%} = 5.0\text{ V} \cdot \left( \frac{\text{Valor PWM}}{255} \right)$$
 
-```
-  Duty Cycle = 25% (analogWrite(pin, 64)) -> Vprom = 1.25 V
-  +---+               +---+
-  |   |               |   |
---+   +---------------+   +---------------
 
-  Duty Cycle = 75% (analogWrite(pin, 191)) -> Vprom = 3.75 V
-  +---------+         +---------+
-  |         |         |         |
---+         +---------+         +---------
-```
 
 ### B. Pines PWM en el Arduino Uno (ATmega328P):
 Los pines marcados con el símbolo `~` disponen de temporizadores por hardware para PWM:

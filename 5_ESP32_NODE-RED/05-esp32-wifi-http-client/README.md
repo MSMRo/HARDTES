@@ -13,18 +13,7 @@ Aprenderás a:
 
 ## 2. Arquitectura de Comunicación
 
-```
- [ ESP32 Biosensor ]
- (Modo Station - STA)
-          |
-    (Wi-Fi Router)
-          |
-          | --- HTTP POST /telemetria (JSON) ---> [ Servidor Cloud / Node-RED ]
-          |                                       Headers: Content-Type: application/json
-          |                                       Payload: {"paciente":"PAC-01", "bpm":75}
-          |
-          |<--- HTTP 201 Created (Confirmación) -+
-```
+
 
 ---
 

@@ -15,11 +15,7 @@ En este laboratorio aprenderás a:
 
 ## 2. Estructura de la Trama NMEA 0183 (`$GPRMC`)
 
-```
- $GPRMC,123519.00,A,1205.3820,S,07701.8420,W,0.022,0.0,211026,,,A*7A
-   |        |     |     |     |     |      |
-   1        2     3     4     5     6      7
-```
+
 1. **Identificador:** `$GPRMC` (Recommended Minimum Specific GPS Data).
 2. **Hora UTC:** `12:35:19.00`.
 3. **Estado de Fijación (Fix):** `A` = Activo/Válido; `V` = Vacío/Inválido (sin satélites).

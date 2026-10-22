@@ -54,7 +54,7 @@ Combina la interrupción externa `attachInterrupt()` para el botón de paro card
 ---
 
 ## 6. Simulación en SimulIDE
-1. Abre [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/2_ARDUINO_UNO_C%2B%2B/06-timers-e-interrupciones/circuito.sim1) en SimulIDE.
+1. Abre [`circuito.sim1`](./2_ARDUINO_UNO_C%2B%2B/06-timers-e-interrupciones/circuito.sim1) en SimulIDE.
 2. Carga el firmware compilado y enciende el circuito.
 3. Abre el Monitor Serie y presiona el pulsador en el pin D2:
    - Observa la respuesta inmediata con interrupción de emergencia independientemente de lo que esté ejecutando el programa principal.

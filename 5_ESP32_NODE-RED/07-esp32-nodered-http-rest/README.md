@@ -13,19 +13,7 @@ Aprenderás a:
 
 ## 2. Diagrama de Secuencia de la Comunicación
 
-```
- [ ESP32 Biosensor ]                                          [ Servidor Node-RED ]
-         |                                                              |
-         | --- 1. HTTP POST /api/v1/telesalud/vitales (JSON) ---------> |
-         |        Payload: {"paciente_id":"PAC-01","bpm":74,...}        |
-         |                                                              | (Valida rango clínico)
-         |                                                              | (Guarda en contexto)
-         |                                                              |
-         | <-- 2. HTTP 201 Created ------------------------------------ |
-         |        Payload: {"status":"OK","hora":"2026-10-20T..."}      |
-         |                                                              |
-    (Analiza ACK)
-```
+
 
 ---
 

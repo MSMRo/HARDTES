@@ -17,19 +17,7 @@ En este proyecto aprenderás a:
 
 ## 2. Arquitectura de Conectividad IoMT
 
-```
-                     +---------------------------------------+
-                     |        BROKER MQTT (EMQX / Mosquitto) |
-                     +---------------------------------------+
-                       ^                                   ^
-       Publica Vitals  |                                   |  Recibe Vitals
-       Suscrito a Cmds |                                   |  Publica Cmds
-                       v                                   v
-             +--------------------+               +------------------+
-             | ESP32 DevKit       |               | Servidor Node-RED|
-             | Monitor Biomédico  |               | Dashboard UPCH   |
-             +--------------------+               +------------------+
-```
+
 
 ---
 

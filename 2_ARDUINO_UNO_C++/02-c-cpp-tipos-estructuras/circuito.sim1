@@ -1,7 +1,9 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (C++ Structs)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
-
 <item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#f0fdf4" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#166534" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 02 (C++): Structs Biomédicos y Optimización de SRAM&#xa;&#xa; Cargar firmware en Arduino y abrir Monitor Serial a 115200 baudios&#xa; para observar el reporte de triage y tamaño en memoria." />
+
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-16,104" rotation="0" hflip="-1" vflip="-1" label="Uno-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Program="structs_pointers.hex" Auto_Load="false" saveEepr="true" MainMcu="true" SerialMon="-1" />
+</item>
 
 </circuit>

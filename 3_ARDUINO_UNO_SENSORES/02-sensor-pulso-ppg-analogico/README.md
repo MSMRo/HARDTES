@@ -16,16 +16,7 @@ En este laboratorio aprenderás a:
 
 ## 2. Morfología de la Señal PPG y Procesamiento Digital
 
-```
-   Onda PPG (Presión Arterial en Capilares)
-         /\ (Pico Sistólico)
-        /  \
-       /    \       /\ (Muesca Dicrótica: Cierre válvula aórtica)
-      /      \__/\_/  \
-     /                 \
-  --+-------------------+--------
-    |<----- IBI (ms) --->|
-```
+
 
 ### A. Filtro Paso-Altas Digital IIR (DC Removal):
 Para eliminar la deriva de línea base y retener solo la pulsación:

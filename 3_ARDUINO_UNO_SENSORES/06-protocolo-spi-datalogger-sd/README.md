@@ -19,15 +19,7 @@ En este laboratorio aprenderás a:
 
 A diferencia de I2C (que usa 2 líneas semidúplex con arbitraje y direcciones), SPI es un bus **Full-Dúplex de 4 líneas dedicadas**:
 
-```
-  Arduino Uno (Maestro SPI)                   Módulo MicroSD / ADC Rápido
-  +-------------------------+                 +-------------------------+
-  |    MOSI (Pin D11)       | --------------> | MOSI / DI (Data In)     |
-  |    MISO (Pin D12)       | <-------------- | MISO / DO (Data Out)    |
-  |    SCK  (Pin D13)       | --------------> | CLK (Serial Clock)      |
-  |    CS   (Pin D10 / SS)  | --------------> | CS / SS (Chip Select)   |
-  +-------------------------+                 +-------------------------+
-```
+
 
 ### Líneas del Bus:
 1. **MOSI (Master Out Slave In):** Datos emitidos por el Arduino hacia el periférico.

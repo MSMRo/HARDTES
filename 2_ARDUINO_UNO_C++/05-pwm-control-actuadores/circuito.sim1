@@ -1,16 +1,12 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="Arduino Uno" CircId="Arduino-1" mainComp="true" Show_id="true" Show_Val="false" Pos="-100,-140" rotation="0" hflip="1" vflip="1" label="Arduino Uno (PWM D9)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
-
-<item itemtype="Potentiometer" CircId="Pot-Control" mainComp="false" Show_id="true" Show_Val="true" Pos="-220,-40" rotation="0" hflip="1" vflip="1" label="Dosis (A0)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Resistance="10 kΩ" Pos_pct="50" />
-
-<item itemtype="Rail." CircId="Rail-5V" mainComp="false" Show_id="true" Show_Val="true" Pos="-260,-80" rotation="0" hflip="1" vflip="1" label="5V" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
+<item itemtype="Potentiometer" CircId="Pot-Control" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-220,-40" rotation="0" hflip="1" vflip="1" label="Dosis (A0)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Resistance="10 kΩ" Value_Ohm="0 Ω" Slider="false" Scale="1" />
 
 <item itemtype="Ground" CircId="Ground-Pot" mainComp="false" Show_id="false" Show_Val="false" Pos="-260,0" rotation="0" hflip="1" vflip="1" label="GND" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
 <item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="80,-80" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
 
-<item itemtype="Led" CircId="Led-Actuador" mainComp="false" Show_id="true" Show_Val="false" Pos="150,-80" rotation="0" hflip="1" vflip="1" label="Bomba Infusión" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Blue" />
+<item itemtype="Led" CircId="Led-Actuador" mainComp="false" Show_id="true" Show_Val="false" Pos="150,-80" rotation="0" hflip="1" vflip="1" label="Bomba Infusión" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Blue" Grounded="false" Threshold="3.6 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
 
 <item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="190,-40" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
@@ -18,12 +14,12 @@
 
 <item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-240" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#eff6ff" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#1d4ed8" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 05 (C++): Modulación PWM en Pin D9 (Timer1)&#xa;&#xa; Potenciómetro en A0 ajusta el ciclo de trabajo de 0% a 100%&#xa; El Osciloscopio muestra la modulación de ancho de pulso para la infusión médica" />
 
-<item itemtype="Connector" uid="Connector-1" startpinid="Rail-5V-outpin" endpinid="Pot-Control-Pin0" pointList="-260,-80,-260,-52,-236,-52" />
-<item itemtype="Connector" uid="Connector-2" startpinid="Ground-Pot-Gnd" endpinid="Pot-Control-Pin2" pointList="-260,0,-260,-28,-236,-28" />
-<item itemtype="Connector" uid="Connector-3" startpinid="Pot-Control-Pin1" endpinid="Arduino-1-A0" pointList="-204,-40,-130,-40" />
-<item itemtype="Connector" uid="Connector-4" startpinid="Arduino-1-D9" endpinid="Resistor-Led-lPin" pointList="20,-80,64,-80" />
-<item itemtype="Connector" uid="Connector-5" startpinid="Resistor-Led-rPin" endpinid="Led-Actuador-anode" pointList="96,-80,134,-80" />
-<item itemtype="Connector" uid="Connector-6" startpinid="Led-Actuador-cathode" endpinid="Ground-Led-Gnd" pointList="166,-80,190,-80,190,-40" />
-<item itemtype="Connector" uid="Connector-7" startpinid="Arduino-1-D9" endpinid="Oscope-Pwm-Pin0" pointList="20,-80,20,-140,200,-140" />
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-144,-136" rotation="0" hflip="1" vflip="1" label="Uno-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Auto_Load="false" saveEepr="true" MainMcu="true" SerialMon="-1" />
+</item>
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Resistor-Led-rPin" endpinid="Led-Actuador-lPin" pointList="96,-80,136,-80" />
+
+<item itemtype="Connector" uid="Connector-6" startpinid="Led-Actuador-rPin" endpinid="Ground-Led-Gnd" pointList="166,-80,192,-80,192,-56" />
 
 </circuit>

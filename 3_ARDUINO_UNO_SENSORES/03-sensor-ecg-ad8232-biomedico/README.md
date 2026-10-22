@@ -17,17 +17,7 @@ En este laboratorio aprenderás a:
 
 ## 2. Mapa de Conexiones del Sensor AD8232
 
-```
-  Módulo AD8232                   Arduino Uno
-  +---------------+               +-------------+
-  |           3.3V| <-----------> | 3.3V        |
-  |            GND| <-----------> | GND         |
-  |         OUTPUT| ------------> | A0 (ADC ECG)|
-  |            LO+| ------------> | D10 (GPIO)  |
-  |            LO-| ------------> | D11 (GPIO)  |
-  |            SDN| (No conectado o HIGH)       |
-  +---------------+               +-------------+
-```
+
 
 ---
 

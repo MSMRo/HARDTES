@@ -11,21 +11,14 @@ En este laboratorio aprenderás a:
 - Controlar entradas y salidas digitales manipulando directamente los registros `DDRx`, `PORTx` y `PINx`.
 - Simular el microcontrolador Arduino Uno ejecutando el firmware en **SimulIDE**.
 
+![](./imgs/image.png)
+
 ---
 
 ## 2. Mapa de Registros del ATmega328P
 
 El microcontrolador organiza sus 28 pines físicos en 3 puertos de 8 bits:
 
-```
-+------------+--------------------+--------------------------------------------+
-| Puerto AVR | Pines Físicos      | Pines Mapeados en Arduino Uno              |
-+------------+--------------------+--------------------------------------------+
-| PUERTO B   | PB0 a PB5          | Pines Digitales D8 a D13 (D13 es PB5)      |
-| PUERTO C   | PC0 a PC5          | Entradas Analógicas A0 a A5                |
-| PUERTO D   | PD0 a PD7          | Pines Digitales D0 a D7 (D0/D1 son RX/TX)  |
-+------------+--------------------+--------------------------------------------+
-```
 
 ### Los 3 Registros Fundamentales por Puerto:
 1. **`DDRx` (Data Direction Register):** Configura la dirección del pin:

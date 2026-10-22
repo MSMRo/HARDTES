@@ -9,6 +9,8 @@ En este laboratorio aprenderás a:
 - Utilizar enumeraciones fuertemente tipadas (`enum`) para estados clínicos de triage.
 - Emplear **punteros y referencias en C++** para procesar telemetría sin duplicar memoria.
 
+![](./imgs/image.png)
+
 ---
 
 ## 2. Tipos de Datos Enteros de Ancho Fijo (`<stdint.h>`)

@@ -15,21 +15,7 @@ En este laboratorio aprenderás a:
 
 ## 2. Fundamento Físico y Protocolo del Bus I2C
 
-```
-     +5V
-      |        |
-    [4.7k]   [4.7k] (Resistencias Pull-Up obligatorias)
-      |        |
- SDA -+--------+-------+--------------------+ (A4 en Arduino Uno)
-                       |                    |
- SCL ------------------+--------------------+ (A5 en Arduino Uno)
-                       |                    |
-                 +-----------+        +-----------+
-                 | Sensor    |        | Display   |
-                 | MAX30102  |        | OLED/LCD  |
-                 | (Dir 0x57)|        | (Dir 0x3C)|
-                 +-----------+        +-----------+
-```
+
 
 ### Anatomía de una Transacción I2C:
 1. **Condición START:** La línea `SDA` pasa de nivel alto a bajo mientras `SCL` permanece en nivel alto.

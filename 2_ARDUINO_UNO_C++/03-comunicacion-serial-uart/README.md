@@ -19,12 +19,6 @@ En este laboratorio aprenderás a:
 - **Paridad:** Ninguna (None).
 - **Bits de Parada:** 1 bit (Stop Bit).
 
-```
-   IDLE (1)      START (0)      D0      D1      D2      D3      D4      D5      D6      D7     STOP (1)
-  -----------+             +-------+-------+-------+-------+-------+-------+-------+-------+-------------
-             |_____________|                                                               |
-              1 bit time                                                                    1 bit time
-```
 
 ---
 

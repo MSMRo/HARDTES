@@ -23,16 +23,7 @@ $$V_{rizado\ (p-p)} \approx \frac{I_{carga}}{f \cdot C}$$
 ### B. Regulador y Limitador con Diodo Zener
 El diodo Zener opera en la región de ruptura inversa ($V_Z$). Cuando el voltaje de entrada supera $V_Z$, el diodo conduce corriente manteniendo la tensión de salida clavada en $V_Z$, protegiendo las entradas del ADC del Arduino o ESP32.
 
-```
-            R_limitadora (1 kΩ)
-  Vin >--------/\/\/\/\--------+---------> Vout_protegido (Máx 3.3V)
-                               |
-                              ---  Diodo Zener (3.3V)
-                              / \  (Cátodo hacia arriba)
-                              ---
-                               |
-                              GND
-```
+![](./imgs/image.png)
 
 ---
 
@@ -48,7 +39,7 @@ El diodo Zener opera en la región de ruptura inversa ($V_Z$). Cuando el voltaje
 
 ## 4. Procedimiento de Simulación en SimulIDE
 
-1. Carga [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/1_ELECTRONICA_BASICA/03-diodos-rectificacion-fuente/circuito.sim1) en SimulIDE.
+1. Carga [`circuito.sim1`](./1_ELECTRONICA_BASICA/03-diodos-rectificacion-fuente/circuito.sim1) en SimulIDE.
 2. Presiona **Power Circuit**.
 3. Abre el **Osciloscopio**:
    - Observa cómo la onda senoidal negativa es bloqueada por el diodo rectificador.

@@ -1,9 +1,5 @@
 <circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="Rail." CircId="Rail-Vcc" mainComp="false" Show_id="true" Show_Val="true" Pos="-60,-220" rotation="0" hflip="1" vflip="1" label="VCC (5V)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Voltage="5 V" Unit="V" />
-
-<item itemtype="lm555" CircId="LM555-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-40,-120" rotation="0" hflip="1" vflip="1" label="NE555 Marcapasos" idLabPos="-16,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" />
-
 <item itemtype="Resistor" CircId="Resistor-RA" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-140,-160" rotation="90" hflip="1" vflip="1" label="RA (10k)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
 
 <item itemtype="Resistor" CircId="Resistor-RB" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-140,-80" rotation="90" hflip="1" vflip="1" label="RB (47k)" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="47 kΩ" />
@@ -12,33 +8,78 @@
 
 <item itemtype="Resistor" CircId="Resistor-Led" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="60,-120" rotation="0" hflip="1" vflip="1" label="R_Led" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="330 Ω" />
 
-<item itemtype="Led" CircId="Led-Pulse" mainComp="false" Show_id="true" Show_Val="false" Pos="140,-120" rotation="0" hflip="1" vflip="1" label="Latido Cardíaco" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" />
+<item itemtype="Led" CircId="Led-Pulse" mainComp="false" Show_id="true" Show_Val="false" Pos="140,-120" rotation="0" hflip="1" vflip="1" label="Latido Cardíaco" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Red" Grounded="false" Threshold="1.8 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
 
 <item itemtype="Ground" CircId="Ground-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-140,60" rotation="0" hflip="1" vflip="1" label="GND-1" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
 <item itemtype="Ground" CircId="Ground-Led" mainComp="false" Show_id="false" Show_Val="false" Pos="180,-60" rotation="0" hflip="1" vflip="1" label="GND-Led" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Oscope" CircId="Oscope-1" mainComp="false" Show_id="true" Show_Val="false" Pos="260,-120" rotation="0" hflip="1" vflip="1" label="Osciloscopio" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="500000000" TimPos="0,0,0,0," VolDiv="2,2,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="1" HideCh="false,true,true,true," VolPos="0,0,0,0," />
+<item itemtype="Oscope" CircId="Oscope-1" mainComp="false" Show_id="true" Show_Val="false" Pos="192,44" rotation="0" hflip="1" vflip="1" label="Osciloscopio" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TimDiv="425281124689" TimPos="13005456425,13005456425,13005456425,13005456425," VolDiv="2,2,1,1," Tunnels=",,,," Trigger="0" Filter="0.1 V" AutoSC="4" Tracks="1" HideCh="false,true,true,true," VolPos="0,0,0,0," />
 
-<item itemtype="Node" CircId="Node-Discharge" mainComp="false" Pos="-140,-120" />
-<item itemtype="Node" CircId="Node-ThreshTrig" mainComp="false" Pos="-140,-40" />
+<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-216,-324" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fff1f2" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#be123c" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 06: Oscilador Astable NE555 (Simulador de Marcapasos)&#xa;&#xa; f &#x3D 1.44 / ((RA + 2*RB) * C)&#xa; RA &#x3D 10k, RB &#x3D 47k, C &#x3D 10µF -&#x3E f ≈ 1.38 Hz (83 lpm)&#xa; Salida Pin 3 activa LED de pulso cardíaco" />
 
-<item itemtype="TextComponent" CircId="Text-Info" mainComp="false" Show_id="false" Show_Val="false" Pos="-280,-260" rotation="0" hflip="1" vflip="1" label="Text-Info" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#fff1f2" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#be123c" Font_Size="10 _px" Fixed_Width="false" Text="&#xa; UPCH - HARDWARE PARA TELESALUD&#xa; Lab 06: Oscilador Astable NE555 (Simulador de Marcapasos)&#xa;&#xa; f = 1.44 / ((RA + 2*RB) * C)&#xa; RA = 10k, RB = 47k, C = 10µF -> f ≈ 1.38 Hz (83 lpm)&#xa; Salida Pin 3 activa LED de pulso cardíaco" />
+<item itemtype="Lm555" CircId="Lm555-2" mainComp="false" Show_id="false" Show_Val="false" Pos="-60,-68" rotation="0" hflip="1" vflip="1" label="Lm555-2" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Connector" uid="Connector-1" startpinid="Rail-Vcc-outpin" endpinid="LM555-1-VCC" pointList="-60,-220,-60,-156" />
-<item itemtype="Connector" uid="Connector-2" startpinid="Rail-Vcc-outpin" endpinid="Resistor-RA-lPin" pointList="-60,-220,-140,-220,-140,-176" />
-<item itemtype="Connector" uid="Connector-3" startpinid="Resistor-RA-rPin" endpinid="Node-Discharge-1" pointList="-140,-144,-140,-120" />
-<item itemtype="Connector" uid="Connector-4" startpinid="Node-Discharge-2" endpinid="Resistor-RB-lPin" pointList="-140,-120,-140,-96" />
-<item itemtype="Connector" uid="Connector-5" startpinid="Node-Discharge-0" endpinid="LM555-1-Discharge" pointList="-140,-120,-76,-120" />
-<item itemtype="Connector" uid="Connector-6" startpinid="Resistor-RB-rPin" endpinid="Node-ThreshTrig-1" pointList="-140,-64,-140,-40" />
-<item itemtype="Connector" uid="Connector-7" startpinid="Node-ThreshTrig-2" endpinid="Capacitor-C-lPin" pointList="-140,-40,-140,-16" />
-<item itemtype="Connector" uid="Connector-8" startpinid="Capacitor-C-rPin" endpinid="Ground-1-Gnd" pointList="-140,16,-140,60" />
-<item itemtype="Connector" uid="Connector-9" startpinid="Node-ThreshTrig-0" endpinid="LM555-1-Threshold" pointList="-140,-40,-76,-40,-76,-84" />
-<item itemtype="Connector" uid="Connector-10" startpinid="LM555-1-Trigger" endpinid="LM555-1-Threshold" pointList="-76,-100,-76,-84" />
-<item itemtype="Connector" uid="Connector-11" startpinid="LM555-1-GND" endpinid="Ground-1-Gnd" pointList="-40,-84,-40,60,-140,60" />
-<item itemtype="Connector" uid="Connector-12" startpinid="LM555-1-Output" endpinid="Resistor-Led-lPin" pointList="-4,-120,44,-120" />
-<item itemtype="Connector" uid="Connector-13" startpinid="Resistor-Led-rPin" endpinid="Led-Pulse-anode" pointList="76,-120,124,-120" />
-<item itemtype="Connector" uid="Connector-14" startpinid="Led-Pulse-cathode" endpinid="Ground-Led-Gnd" pointList="156,-120,180,-120,180,-60" />
-<item itemtype="Connector" uid="Connector-15" startpinid="Resistor-Led-rPin" endpinid="Oscope-1-Pin0" pointList="76,-120,76,-180,200,-180,200,-120" />
+<item itemtype="Ground" CircId="Ground-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-88,60" rotation="0" hflip="1" vflip="1" label="Ground-3" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Rail" CircId="Rail-7" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="-140,-204" rotation="90" hflip="1" vflip="1" label="Rail-7" idLabPos="-5,-10" labelrot="-90" valLabPos="-12,6" valLabRot="-90" Voltage="5 V" />
+
+<item itemtype="Rail" CircId="Rail-8" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="-92,-200" rotation="90" hflip="1" vflip="1" label="Rail-8" idLabPos="-5,-10" labelrot="-90" valLabPos="-12,6" valLabRot="-90" Voltage="5 V" />
+
+<item itemtype="elCapacitor" CircId="elCapacitor-9" mainComp="false" ShowProp="Capacitance" Show_id="true" Show_Val="true" Pos="-4,-4" rotation="90" hflip="1" vflip="1" label="elCapacitor-9" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Capacitance="10 nF" Resistance="1 µΩ" InitVolt="0 V" ReaStep="0 ns" />
+
+<item itemtype="Ground" CircId="Ground-10" mainComp="false" Show_id="false" Show_Val="false" Pos="-4,60" rotation="0" hflip="1" vflip="1" label="Ground-10" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Node" CircId="Node-4" mainComp="false" Pos="-140,-52" />
+
+<item itemtype="Node" CircId="Node-11" mainComp="false" Pos="-104,-52" />
+
+<item itemtype="Node" CircId="Node-12" mainComp="false" Pos="-140,-108" />
+
+<item itemtype="Node" CircId="Node-13" mainComp="false" Pos="-92,-160" />
+
+<item itemtype="Node" CircId="Node-14" mainComp="false" Pos="104,-120" />
+
+<item itemtype="Connector" uid="Connector-8" startpinid="Capacitor-C-rPin" endpinid="Ground-1-Gnd" pointList="-140,16,-140,44" />
+
+<item itemtype="Connector" uid="Connector-14" startpinid="Led-Pulse-rPin" endpinid="Ground-Led-Gnd" pointList="156,-120,180,-120,180,-76" />
+
+<item itemtype="Connector" uid="Connector-17" startpinid="Lm555-2-ePin0" endpinid="Ground-3-Gnd" pointList="-68,-60,-88,-60,-88,44" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="Resistor-RB-rPin" endpinid="Node-4-0" pointList="-140,-64,-140,-52" />
+
+<item itemtype="Connector" uid="Connector-20" startpinid="Node-4-2" endpinid="Capacitor-C-lPin" pointList="-140,-52,-140,-16" />
+
+<item itemtype="Connector" uid="Connector-21" startpinid="Lm555-2-ePin2" endpinid="Resistor-Led-lPin" pointList="-68,-44,-76,-44,-76,-120,44,-120" />
+
+<item itemtype="Connector" uid="Connector-22" startpinid="Rail-7-outnod" endpinid="Resistor-RA-lPin" pointList="-140,-188,-140,-176" />
+
+<item itemtype="Connector" uid="Connector-24" startpinid="Lm555-2-ePin4" endpinid="elCapacitor-9-lPin" pointList="-20,-36,-4,-36,-4,-20" />
+
+<item itemtype="Connector" uid="Connector-25" startpinid="elCapacitor-9-rPin" endpinid="Ground-10-Gnd" pointList="-4,12,-4,44" />
+
+<item itemtype="Connector" uid="Connector-26" startpinid="Lm555-2-ePin5" endpinid="Node-11-1" pointList="-20,-44,36,-44,36,-92,-104,-92,-104,-52" />
+
+<item itemtype="Connector" uid="Connector-27" startpinid="Lm555-2-ePin1" endpinid="Node-11-0" pointList="-68,-52,-104,-52" />
+
+<item itemtype="Connector" uid="Connector-28" startpinid="Node-11-2" endpinid="Node-4-1" pointList="-104,-52,-140,-52" />
+
+<item itemtype="Connector" uid="Connector-29" startpinid="Lm555-2-ePin6" endpinid="Node-12-1" pointList="-20,-52,4,-52,4,-108,-140,-108" />
+
+<item itemtype="Connector" uid="Connector-30" startpinid="Resistor-RA-rPin" endpinid="Node-12-0" pointList="-140,-144,-140,-108" />
+
+<item itemtype="Connector" uid="Connector-31" startpinid="Node-12-2" endpinid="Resistor-RB-lPin" pointList="-140,-108,-140,-96" />
+
+<item itemtype="Connector" uid="Connector-32" startpinid="Lm555-2-ePin7" endpinid="Node-13-1" pointList="-20,-60,-20,-160,-92,-160" />
+
+<item itemtype="Connector" uid="Connector-33" startpinid="Lm555-2-ePin3" endpinid="Node-13-0" pointList="-68,-36,-92,-36,-92,-160" />
+
+<item itemtype="Connector" uid="Connector-34" startpinid="Node-13-2" endpinid="Rail-8-outnod" pointList="-92,-160,-92,-184" />
+
+<item itemtype="Connector" uid="Connector-35" startpinid="Oscope-1-Pin0" endpinid="Node-14-1" pointList="104,-4,104,-120" />
+
+<item itemtype="Connector" uid="Connector-36" startpinid="Resistor-Led-rPin" endpinid="Node-14-0" pointList="76,-120,104,-120" />
+
+<item itemtype="Connector" uid="Connector-37" startpinid="Node-14-2" endpinid="Led-Pulse-lPin" pointList="104,-120,124,-120" />
 
 </circuit>

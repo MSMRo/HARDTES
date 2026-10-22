@@ -17,22 +17,7 @@ En este laboratorio aprenderás a:
 
 En el modo astable, el condensador $C$ se carga a través de $(R_A + R_B)$ hasta que su tensión alcanza $\frac{2}{3} V_{CC}$, activando el comparador interno que conmuta la salida a nivel bajo y descarga $C$ a través de $R_B$ hacia el pin de descarga (pin 7) hasta llegar a $\frac{1}{3} V_{CC}$.
 
-```
-                     +--- VCC (5V)
-                     |
-                    [ ] RA (10 kΩ)
-                     |
-                     +------- Pin 7 (Discharge)
-                     |
-                    [ ] RB (47 kΩ)
-                     |
-                     +------- Pin 6 (Threshold) & Pin 2 (Trigger)
-                     |
-                    --- C (10 µF)
-                    ---
-                     |
-                    GND
-```
+![](./imgs/image.png)
 
 ### Ecuaciones Matemáticas:
 1. **Tiempo en nivel Alto ($T_H$):**

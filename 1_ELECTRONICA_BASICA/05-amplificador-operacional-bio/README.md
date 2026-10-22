@@ -31,17 +31,8 @@ El **Amplificador Operacional (OpAmp)** es el componente activo fundamental en i
   $$V_{out} = V_{in} \cdot \left( 1 + \frac{R_f}{R_1} \right)$$
 - **Ventaja Biomédica:** Mantiene la polaridad de las ondas P-Q-R-S-T del electrocardiograma y preserva la altísima impedancia de entrada en el pin no inversor ($V_+$).
 
-```
-                 +-------------+
-                 |             |
-                 +---[ Rf ]----+
-                 |             |
-                 |    |\       |
-  GND ---[ R1 ]--+----| - \    |
-                      |    >---+---> Vout
-  Vin (ECG) --------->| + /
-                      |/
-```
+
+![](./imgs/image.png)
 
 #### Ejemplo de Cálculo de Ganancia:
 Para elevar una señal ECG de $10\text{ mV}$ a $1.0\text{ V}$ (factor $\times 100$):

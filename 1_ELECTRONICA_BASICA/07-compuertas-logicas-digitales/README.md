@@ -50,14 +50,7 @@ La descarga de $200\text{ Joules}$ solo puede autorizarse si se cumplen simultá
 ### Ecuación Booleana de Activación:
 $$\text{DESCARGA} = A \cdot B \cdot \overline{C}$$
 
-```
-  Sensor Contacto Torácico (A) >----+
-                                     +----[ AND-1 ]----+
-  Pulsador Médico (B) --------->----+                 |
-                                                       +----[ AND-2 ]----> DISPARO DESFIBRILADOR (LED Rojo)
-  Ritmo No Choqueable (C) ---->[ NOT ]----------------+
-```
-
+![](./imgs/image.png)
 ---
 
 ## 4. Elementos en SimulIDE (`circuito.sim1`)
@@ -71,7 +64,7 @@ $$\text{DESCARGA} = A \cdot B \cdot \overline{C}$$
 
 ## 5. Procedimiento de Simulación en SimulIDE
 
-1. Carga [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/1_ELECTRONICA_BASICA/07-compuertas-logicas-digitales/circuito.sim1) en SimulIDE.
+1. Carga [`circuito.sim1`](./1_ELECTRONICA_BASICA/07-compuertas-logicas-digitales/circuito.sim1) en SimulIDE.
 2. Presiona **Power Circuit**.
 3. Prueba todas las combinaciones de interruptores:
    - Si el médico presiona el pulsador ($B=1$) pero las palas no hacen buen contacto ($A=0$), la salida permanece en $0$ (Seguridad OK).

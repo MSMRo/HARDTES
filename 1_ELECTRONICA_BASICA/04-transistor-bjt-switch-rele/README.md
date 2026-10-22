@@ -38,11 +38,13 @@ Este pico (a menudo $> 100\text{ V}$) destruiría el transistor al instante. Un 
 5. **Diodo de Protección / Flyback:** 1N4148 / 1N4007.
 6. **Sonda / Amperímetro:** Para verificar la saturación del transistor y la corriente de carga.
 
+![](./imgs/image.png)
+
 ---
 
 ## 4. Procedimiento de Simulación en SimulIDE
 
-1. Abre [`circuito.sim1`](file:///d:/DOCUMENTOS/PROJECTS/HARDTES/1_ELECTRONICA_BASICA/04-transistor-bjt-switch-rele/circuito.sim1) en SimulIDE.
+1. Abre [`circuito.sim1`](./1_ELECTRONICA_BASICA/04-transistor-bjt-switch-rele/circuito.sim1) en SimulIDE.
 2. Enciende el circuito (**Power Circuit**).
 3. Con el interruptor abierto ($0\text{ V}$ en base):
    - Observa que la corriente de colector es $0\text{ mA}$ y el LED/alarma está apagado.
